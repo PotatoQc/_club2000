@@ -1,0 +1,20 @@
+# --- Large source assets (the shipped, optimized versions are tracked) ---
+test.mp4
+
+# --- Dependencies ---
+node_modules/
+
+# --- Agent / dev tooling (restore with `npx impeccable install`) ---
+.claude/
+.agents/
+.codex/
+.impeccable/hook.cache.json
+.impeccable/live/
+
+# --- OS / editor cruft ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.vscode/
+.idea/

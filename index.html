@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" data-i18n-attr="content" data-i18n="meta_desc" content="CLUB 2000 présente Y2K RAVE — une nuit techno à Montréal. Le son de l'an 2000, rejoué plus fort. 12 septembre 2026." />
+  <meta name="theme-color" content="#05060c" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CLUB 2000 — Y2K RAVE" />
+  <meta property="og:description" content="Une nuit techno à Montréal. Le son de l'an 2000, rejoué plus fort. 12 septembre 2026." />
+
+  <title>CLUB 2000 — Y2K RAVE · Montréal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Instrument+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══ AMBIANCE ══ -->
+  <div class="bg" aria-hidden="true">
+    <span class="blob blob--a"></span>
+    <span class="blob blob--b"></span>
+    <span class="scanlines"></span>
+    <span class="grain"></span>
+  </div>
+  <div class="scroll-bar" id="scrollBar" aria-hidden="true"></div>
+
+  <!-- ══ NAV ══ -->
+  <nav id="nav">
+    <a class="brand" href="#top" aria-label="CLUB 2000">
+      <span class="brand-mark" aria-hidden="true"></span>
+      CLUB<span>2000</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#soiree" data-i18n="nav_night">Soirée</a></li>
+      <li><a href="#lineup" data-i18n="nav_lineup">Line-up</a></li>
+      <li><a href="#infos" data-i18n="nav_info">Infos</a></li>
+      <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+      <li><a class="btn btn--fill btn--sm" href="#billets" data-magnetic data-i18n="nav_tickets">Billets</a></li>
+    </ul>
+
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch to English">EN</button>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" data-i18n-attr="aria-label" data-i18n="nav_open" aria-label="Ouvrir le menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-scrim" id="navScrim" aria-hidden="true"></div>
+
+  <!-- ══ HERO ══ -->
+  <header id="top" class="hero">
+    <!-- ✏️ VIDÉO D'AMBIANCE — `club-hero.mp4` (2,8 Mo, 1152×~648, 24 ips, sans son),
+         généré depuis `test.mp4`. Le fichier source `test.mp4` (62 Mo) peut être
+         supprimé. Pour changer la vidéo : réencoder et garder ce nom. -->
+    <div class="hero-video" aria-hidden="true">
+      <video id="heroVideo" muted loop playsinline autoplay preload="none"
+             data-poster="club-hero.jpg"
+             data-src-webm=""
+             data-src-mp4="club-hero.mp4"></video>
+    </div>
+
+    <p class="eyebrow" data-rise>
+      <span class="eyebrow-led"></span>
+      <span data-i18n="hero_eyebrow">CLUB 2000 · Nuit techno</span>
+    </p>
+
+    <h1 class="wordmark" data-rise data-lines>
+      <span class="chrome">Y2K</span>
+      <span class="chrome">RAVE</span>
+    </h1>
+
+    <p class="hero-sub" data-rise data-i18n="hero_sub">
+      Six heures de techno. Le son de l'an 2000, rejoué plus fort.
+    </p>
+
+    <p class="hero-tags" data-rise>
+      <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span data-i18n="hero_tags">Techno — 130-142 BPM — mur de son</span>
+    </p>
+
+    <div class="hero-cta" data-rise>
+      <a class="btn btn--fill btn--lg" href="#billets" data-magnetic data-i18n="hero_cta_primary">Réserver ma place</a>
+      <a class="btn btn--ghost btn--lg" href="#soiree" data-magnetic>
+        <span data-i18n="hero_cta_secondary">Voir la soirée</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- ══ TICKER — boucle infinie ══ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-set">
+        <span>Y2K RAVE</span><b>✦</b><span data-i18n="ticker_1">Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span data-i18n="ticker_2">An 2000</span><b>✦</b>
+      </span>
+      <span class="ticker-set" aria-hidden="true">
+        <span>Y2K RAVE</span><b>✦</b><span data-i18n="ticker_1">Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span data-i18n="ticker_2">An 2000</span><b>✦</b>
+      </span>
+    </div>
+  </div>
+
+  <!-- ══ SOIRÉE ══ -->
+  <section id="soiree" class="next reveal">
+    <p class="kicker"><span>01</span> <span data-i18n="next_kicker">La soirée</span></p>
+
+    <div class="next-head">
+      <h2 class="next-date" data-speed="0.05"><time datetime="2026-09-12">12<span>.</span>09<span>.</span>26</time></h2>
+      <p class="next-name">Y2K RAVE — <span data-i18n="next_sub">présenté par CLUB 2000</span></p>
+    </div>
+
+    <div class="countdown" id="countdown" role="timer" aria-live="off">
+      <div class="cd-cell"><span class="cd-num" id="cdDays">--</span><span class="cd-lab" data-i18n="cd_days">jours</span></div>
+      <div class="cd-cell"><span class="cd-num" id="cdHours">--</span><span class="cd-lab" data-i18n="cd_hours">heures</span></div>
+      <div class="cd-cell"><span class="cd-num" id="cdMin">--</span><span class="cd-lab" data-i18n="cd_min">min</span></div>
+      <div class="cd-cell"><span class="cd-num" id="cdSec">--</span><span class="cd-lab" data-i18n="cd_sec">sec</span></div>
+    </div>
+    <p class="cd-note" id="cdNote" aria-live="polite"></p>
+
+    <dl class="next-facts">
+      <div><dt data-i18n="fact_venue">Lieu</dt><dd>2037 rue Saint-Denis, Montréal<br /><span data-i18n="fact_venue_sub">Quartier latin · métro Sherbrooke</span></dd></div>
+      <div><dt data-i18n="fact_doors">Portes</dt><dd><span data-i18n="fact_doors_val">22 h — 04 h</span><br /><span data-i18n="fact_doors_sub">Système son grand format</span></dd></div>
+      <div><dt data-i18n="fact_access">Accès</dt><dd><span data-i18n="fact_access_val">18 + · pièce d'identité</span><br /><span data-i18n="fact_access_sub">Entrées et sorties permises</span></dd></div>
+    </dl>
+
+    <p class="perk">
+      <span class="perk-badge" aria-hidden="true">🎁</span>
+      <span data-i18n="perk_text">Cadeau garanti aux 30 premières personnes arrivées.</span>
+    </p>
+
+    <a class="btn btn--fill btn--lg btn--block" id="ticketBtn" href="#billets" data-ticket-link data-magnetic data-i18n="next_cta">Prendre un billet</a>
+  </section>
+
+  <!-- ══ LINE-UP ══ -->
+  <section id="lineup" class="lineup reveal">
+    <p class="kicker"><span>02</span> <span data-i18n="lineup_kicker">Line-up</span></p>
+    <h2 class="section-title" data-split data-i18n="lineup_title">Deux artistes, <em>une nuit</em></h2>
+
+    <!-- ✏️ À MODIFIER : noms, photos (dj-1.jpg / dj-2.jpg), bios et liens d'écoute -->
+    <div class="dj-list">
+      <article class="dj" data-reveal>
+        <div class="dj-photo">
+          <!-- ✏️ Remplace par : <img src="dj-1.jpg" alt="Portrait de [nom]" width="480" height="480" /> -->
+          <span class="dj-photo-ph">01</span>
+        </div>
+        <div class="dj-body">
+          <p class="dj-role" data-i18n="dj1_role">Tête d'affiche</p>
+          <h3 class="dj-name">Artiste à confirmer</h3>
+          <p class="dj-bio" data-i18n="dj1_bio">Descriptif de l'artiste — parcours, style, sets marquants. Deux ou trois phrases suffisent.</p>
+          <p class="dj-tracks-lab" data-i18n="listen">À écouter</p>
+          <ul class="dj-tracks">
+            <li><a href="#" rel="noopener">Track 01</a></li>
+            <li><a href="#" rel="noopener">Track 02</a></li>
+            <li><a href="#" rel="noopener">Track 03</a></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="dj" data-reveal>
+        <div class="dj-photo">
+          <!-- ✏️ Remplace par : <img src="dj-2.jpg" alt="Portrait de [nom]" width="480" height="480" /> -->
+          <span class="dj-photo-ph">02</span>
+        </div>
+        <div class="dj-body">
+          <p class="dj-role" data-i18n="dj2_role">Invité·e</p>
+          <h3 class="dj-name">Artiste à confirmer</h3>
+          <p class="dj-bio" data-i18n="dj2_bio">Descriptif de l'artiste — parcours, style, sets marquants. Deux ou trois phrases suffisent.</p>
+          <p class="dj-tracks-lab" data-i18n="listen">À écouter</p>
+          <ul class="dj-tracks">
+            <li><a href="#" rel="noopener">Track 01</a></li>
+            <li><a href="#" rel="noopener">Track 02</a></li>
+            <li><a href="#" rel="noopener">Track 03</a></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══ INFOS ══ -->
+  <section id="infos" class="infos reveal">
+    <p class="kicker"><span>03</span> <span data-i18n="info_kicker">Infos pratiques</span></p>
+    <h2 class="section-title" data-split data-i18n="info_title">Tout ce qu'il <em>faut savoir</em></h2>
+
+    <div class="info-grid">
+      <article class="glass"><h3 data-i18n="info_1_h">Date &amp; horaire</h3><p data-i18n="info_1_p">Samedi 12 septembre 2026. Portes à 22 h, fin à 04 h.</p></article>
+      <article class="glass"><h3 data-i18n="info_2_h">Emplacement</h3><p data-i18n="info_2_p">2037 rue Saint-Denis, Montréal — Quartier latin, à 3 min du métro Sherbrooke.</p></article>
+      <article class="glass"><h3 data-i18n="info_3_h">Accès</h3><p data-i18n="info_3_p">Événement 18 +. Pièce d'identité avec photo obligatoire. Entrées et sorties permises toute la nuit.</p></article>
+      <article class="glass"><h3 data-i18n="info_4_h">Sur place</h3><p data-i18n="info_4_p">Vestiaire, bar, point d'eau gratuit. Système son grand format. Cadeau aux 30 premières personnes. Zéro jugement.</p></article>
+    </div>
+  </section>
+
+  <!-- ══ BILLETS ══ -->
+  <section id="billets" class="tickets reveal">
+    <div class="ticket-card glass">
+      <p class="kicker"><span>04</span> <span data-i18n="tickets_kicker">Billets</span></p>
+      <h2 class="section-title" data-split data-i18n="tickets_title">Entre dans le <em>CLUB 2000</em></h2>
+
+      <ul class="tiers">
+        <li class="tier tier--live">
+          <span class="tier-name" data-i18n="tier_online">En ligne</span>
+          <span class="tier-price">10 $</span>
+          <span class="tier-tag" data-i18n="tier_online_tag">En vente</span>
+        </li>
+        <li class="tier">
+          <span class="tier-name" data-i18n="tier_door">À la porte</span>
+          <span class="tier-price">15 $</span>
+          <span class="tier-tag" data-i18n="tier_door_tag">Le soir même</span>
+        </li>
+      </ul>
+
+      <a class="btn btn--fill btn--lg btn--block" data-ticket-link href="#billets" data-magnetic data-i18n="tickets_cta">Acheter un billet</a>
+      <p class="fine" data-i18n="tickets_fine">Quantité limitée · 18 + · non remboursable · billet transférable</p>
+    </div>
+  </section>
+
+  <!-- ══ FAQ ══ -->
+  <section id="faq" class="faq reveal">
+    <p class="kicker"><span>05</span> <span data-i18n="faq_kicker">FAQ</span></p>
+    <h2 class="section-title" data-split data-i18n="faq_title">Questions <em>fréquentes</em></h2>
+
+    <div class="faq-list" id="faqList">
+      <details class="faq-item">
+        <summary><span data-i18n="faq_1_q">Où se passe l'événement ?</span><i aria-hidden="true"></i></summary>
+        <div class="faq-a"><p data-i18n="faq_1_a">Au 2037 rue Saint-Denis, à Montréal, dans le Quartier latin — à quelques pas du métro Sherbrooke. Les consignes d'accès sont envoyées par courriel aux détenteurs de billets la veille.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq_2_q">Quel est l'âge minimum ?</span><i aria-hidden="true"></i></summary>
+        <div class="faq-a"><p data-i18n="faq_2_a">18 ans et plus. Une pièce d'identité avec photo est exigée à l'entrée, sans exception.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq_3_q">Puis-je sortir et revenir ?</span><i aria-hidden="true"></i></summary>
+        <div class="faq-a"><p data-i18n="faq_3_a">Oui. Tu peux sortir et revenir librement pendant la nuit — garde ton billet ou ton bracelet sur toi.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq_4_q">Comment je rentre chez moi à 4 h ?</span><i aria-hidden="true"></i></summary>
+        <div class="faq-a"><p data-i18n="faq_4_a">À 4 h le métro ne roule pas encore (premier passage vers 05 h 30). Les taxis et VTC couvrent le secteur toute la nuit, et le réseau de bus de nuit de la STM dessert le Quartier latin.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq_5_q">Le cadeau des 30 premiers, c'est quoi ?</span><i aria-hidden="true"></i></summary>
+        <div class="faq-a"><p data-i18n="faq_5_a">Une surprise CLUB 2000 remise à l'entrée aux 30 premières personnes arrivées. Arrive tôt.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq_6_q">Les billets sont-ils remboursables ?</span><i aria-hidden="true"></i></summary>
+        <div class="faq-a"><p data-i18n="faq_6_a">Non, mais ils sont transférables. Écris-nous pour changer le nom sur un billet.</p></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <span class="foot-mark chrome">CLUB 2000</span>
+    <p class="foot-line" data-i18n="foot_line">Promoteur d'événements techno — Montréal · depuis l'an 2000</p>
+    <!-- ✏️ À MODIFIER : vrais liens Instagram / SoundCloud + adresse courriel -->
+    <nav class="foot-social" aria-label="Réseaux sociaux">
+      <a href="#" rel="noopener">Instagram</a>
+      <a href="#" rel="noopener">SoundCloud</a>
+      <a href="mailto:hello@club2000.example" data-i18n="foot_email">Courriel</a>
+    </nav>
+    <p class="foot-legal">© <span id="year">2026</span> CLUB 2000 — <span data-i18n="foot_rights">Tous droits réservés</span></p>
+  </footer>
+
+  <!-- défilement à inertie (désactivé si prefers-reduced-motion) -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script src="main.js" defer></script>
+</body>
+</html>

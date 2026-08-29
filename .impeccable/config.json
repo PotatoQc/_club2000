@@ -1,0 +1,29 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "C:/_club2000/style.css"
+        ],
+        "createdAt": "2026-08-28T06:28:10.939Z",
+        "reason": "user confirmed in /impeccable init: the perspective neon-grid is a binding CLUB 2000 brand commitment (PRODUCT.md Brand Commitments), explicitly not up for redesign"
+      },
+      {
+        "rule": "overused-font",
+        "value": "space grotesk",
+        "createdAt": "2026-08-28T06:28:15.427Z",
+        "reason": "user confirmed in /impeccable init: Fredoka + Space Grotesk are a deliberate, kept typeface choice (PRODUCT.md Brand Commitments)"
+      },
+      {
+        "rule": "overused-font",
+        "value": "instrument sans",
+        "createdAt": "2026-08-29T08:32:51.453Z",
+        "reason": "designer decision: body workhorse only; interface personality is carried by the Michroma display face + liquid-chrome material, per DESIGN.md"
+      }
+    ]
+  }
+}

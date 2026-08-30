@@ -125,8 +125,10 @@ title-layer parallax. All ride the existing shared `rAF` loop; measured
     name + hairline, style-tag chips, bio, a 3:2 live/mood shot, then artist links
     or recent-sets line — Azathø / DJoJo) · infos (glass
   grid) · billets (two-up on desktop: the framed **AFTER HOURS flyer**
-  `after-hours.jpg`, click-to-open full size, + the glass ticket card — 2 tiers,
-  10 $ online / 12 $ door, matching the flyer) · faq (`<details>`) · footer.
+  `after-hours.jpg` on the left; on the right a glass card with the 2-tier
+  summary (10 $ online / 12 $ door) stacked above the **embedded Hi.Events
+  ticketing widget** (`#ticketWidget`, event 10580, dark-themed, kept outside the
+  `backdrop-filter` card on purpose)) · faq (`<details>`) · footer.
 - **Bilingual FR / EN**: `data-i18n` keys on every text node, `data-i18n-attr`
   for attributes; `I18N` dict + `applyLang()` in main.js; `.lang-toggle` in nav;
   `langListeners` re-render JS-generated copy (countdown note, ticket fallback).

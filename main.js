@@ -8,7 +8,9 @@
 const CONFIG = {
   // ✏️ Format ISO 8601, -04:00 = heure de l'Est (été)
   eventDate: '2026-09-12T22:00:00-04:00',
-  // ✏️ Colle ici l'URL de la billetterie. Vide = bouton désactivé.
+  // ✏️ URL de billetterie externe. PRIORITAIRE si renseignée (ouvre un onglet).
+  //    Sinon, le widget Hi.Events intégré dans #billets prend le relais et les
+  //    boutons « billet » y renvoient. Vide + pas de widget = bouton désactivé.
   ticketUrl: '',
 };
 
@@ -620,11 +622,18 @@ function applyLang(lang) {
 (function tickets() {
   const links = document.querySelectorAll('[data-ticket-link]');
   const url = CONFIG.ticketUrl.trim();
+  const hasWidget = !!document.querySelector('.hievents-widget');
 
   const render = () => {
     links.forEach((a) => {
       if (url) {
+        // billetterie externe → nouvel onglet
         a.href = url; a.target = '_blank'; a.rel = 'noopener';
+        a.classList.remove('is-soon'); a.removeAttribute('aria-disabled');
+        a.textContent = t(a.dataset.i18n || 'tickets_cta');
+      } else if (hasWidget) {
+        // billetterie intégrée → le bouton descend vers le widget (#billets)
+        a.href = '#billets'; a.removeAttribute('target'); a.removeAttribute('rel');
         a.classList.remove('is-soon'); a.removeAttribute('aria-disabled');
         a.textContent = t(a.dataset.i18n || 'tickets_cta');
       } else {

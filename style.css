@@ -634,13 +634,14 @@ section {
 .tickets { display: flex; justify-content: center; }
 .tickets-inner {
   display: grid; align-items: start;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
-  gap: clamp(1.5rem, 4vw, 3.25rem);
-  width: 100%; max-width: 1000px;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  width: 100%; max-width: 1040px;
 }
-@media (max-width: 800px) {
-  .tickets-inner { grid-template-columns: 1fr; max-width: 460px; gap: 2rem; }
+@media (max-width: 860px) {
+  .tickets-inner { grid-template-columns: 1fr; max-width: 480px; gap: 1.75rem; }
 }
+.ticket-buy { display: flex; flex-direction: column; gap: 1.25rem; min-width: 0; }
 
 .ticket-poster {
   position: relative; display: block;
@@ -673,9 +674,16 @@ section {
 }
 .ticket-poster__tag::before { content: "↗"; color: var(--cyan); }
 
-.ticket-card { width: 100%; max-width: none; padding: clamp(1.7rem, 5vw, 2.8rem); text-align: left; }
-.ticket-card .section-title { font-size: clamp(1.5rem, 1.2rem + 2vw, 2.2rem); margin-bottom: 1.6rem; }
-.tiers { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.8rem; }
+.ticket-card { width: 100%; max-width: none; padding: clamp(1.6rem, 4.5vw, 2.4rem); text-align: left; }
+.ticket-card .section-title { font-size: clamp(1.5rem, 1.2rem + 2vw, 2.1rem); margin-bottom: 1.5rem; }
+.tiers { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 0; }
+
+/* billetterie intégrée (Hi.Events) — hors de la carte .glass pour éviter que
+   backdrop-filter ne devienne le bloc englobant d'une éventuelle modale.
+   Le widget porte son propre fond (#0a0f30 = --ink-2) et sa propre bordure. */
+.ticket-widget { border-radius: var(--r-md); overflow: hidden; min-height: 300px; }
+.ticket-widget .hievents-widget { display: block; width: 100%; }
+.ticket-widget iframe { width: 100% !important; border: 0; display: block; color-scheme: dark; }
 .tier {
   display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 0.9rem;
   padding: 1.1rem 1.2rem;
@@ -690,7 +698,7 @@ section {
 }
 .tier--live { border-color: rgba(61,123,255,0.5); background: rgba(61,123,255,0.08); }
 .tier--live .tier-tag { color: var(--volt); border-color: rgba(61,123,255,0.5); }
-.fine { margin-top: 1rem; font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-dim); }
+.fine { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-dim); text-align: center; }
 
 /* ============================================================
    FAQ

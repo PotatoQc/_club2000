@@ -6,8 +6,10 @@ Static site — **no build, no framework**. Open `index.html` in a browser, or h
 the folder as-is (GitHub Pages, Netlify, Vercel, any static server).
 
 Runtime dependencies are `<script>` / `<link>` tags only: Google Fonts (Chakra
-Petch, Instrument Sans, Space Mono) and [Lenis](https://github.com/darkroomengineering/lenis)
-(smooth scroll) from a CDN. Both degrade gracefully if unreachable.
+Petch, Instrument Sans, Space Mono), [Lenis](https://github.com/darkroomengineering/lenis)
+(smooth scroll) from a CDN, and the [Hi.Events](https://hi.events) ticketing
+widget (`app.hi.events/widget.js`) in `#billets`. Fonts / Lenis degrade
+gracefully if unreachable; without the widget script the ticket area is empty.
 
 ## Files
 
@@ -65,7 +67,11 @@ the HTML — `applyLang()` overwrites the HTML on load. Look for `data-i18n` in
   bios live in `I18N` (`dj1_*` / `dj2_*`, FR + EN); the artist links are hard-coded
   `<a>` in the two `.dj` articles. Photos: `dj-<name>.jpg` (4:5 portrait) +
   `dj-<name>-live.jpg` (3:2). Raw source material is under `DJ/` (gitignored).
-- **Tickets** — tiers and prices (`<ul class="tiers">`, literal text, not i18n)
+- **Tickets** — tier summary text in `<ul class="tiers">` (literal, not i18n).
+  The real sale is the **Hi.Events widget** (`#ticketWidget`, event `10580`) —
+  edit the `data-hievents-*` attributes to re-theme / re-point it; `widget.js`
+  loads at the bottom of `index.html`. Set `CONFIG.ticketUrl` in `main.js` only
+  to override with an external ticketing link.
 - **Flyer** — `#billets` shows `after-hours.jpg` (source `After Hours.png`,
   gitignored). Swap by re-exporting to the same filename; keep it portrait.
 - **Footer** — real Instagram / SoundCloud / email

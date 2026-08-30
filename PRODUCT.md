@@ -84,9 +84,16 @@ ticket holders by email the day before.
   - Bios are on `dj1_*` / `dj2_*` keys in `I18N` (FR + EN). SoundCloud/RA/IG URLs
     are hard-coded in the two `.dj` articles in `index.html`.
 - Tickets: **10 $ en ligne, 12 $ à la porte** (door price changed 15 → 12 on
-  2026-08-30 to match the official flyer — confirm if 15 was correct). The online
-  ticketing URL (`CONFIG.ticketUrl`) is not set yet — buttons show "Billetterie
-  bientôt".
+  2026-08-30 to match the official flyer — confirm if 15 was correct).
+- **Ticketing is LIVE via Hi.Events** (2026-08-30): the inline widget for event
+  **10580** (`app.hi.events`) is embedded in `#billets` (`#ticketWidget`), dark-
+  themed to the site. `widget.js` loads `async` at the bottom of `index.html`.
+  Every "billet" button (`[data-ticket-link]`, e.g. `#ticketBtn` in `#soiree`)
+  now scrolls to `#billets`. `CONFIG.ticketUrl` still wins if ever set (opens a
+  new tab instead). Notes: the hi.events ticket is named just "Ticket" — rename
+  it in the hi.events dashboard for consistency; `locale=fr` but some widget
+  chrome stays English (hi.events limitation); the widget adds a ~CA$0.64 fee and
+  a small "Try Hi.Events Free" credit line.
 - **Official flyer** — `After Hours.png` (user-supplied, gitignored); web version
   `after-hours.jpg` (1240 px, tracked) is shown in the `#billets` section beside
   the ticket card, click-to-open full size. It carries the "AFTER HOURS" tagline,

@@ -236,24 +236,42 @@
         <span class="ticket-poster__tag" data-i18n="poster_tag">Affiche</span>
       </a>
 
-      <div class="ticket-card glass">
-        <p class="kicker"><span>04</span> <span data-i18n="tickets_kicker">Billets</span></p>
-        <h2 class="section-title" data-split data-speed="-0.04" data-i18n="tickets_title">Entre dans le <em>CLUB 2000</em></h2>
+      <div class="ticket-buy">
+        <div class="ticket-card glass">
+          <p class="kicker"><span>04</span> <span data-i18n="tickets_kicker">Billets</span></p>
+          <h2 class="section-title" data-split data-speed="-0.04" data-i18n="tickets_title">Entre dans le <em>CLUB 2000</em></h2>
 
-        <ul class="tiers">
-          <li class="tier tier--live">
-            <span class="tier-name" data-i18n="tier_online">En ligne</span>
-            <span class="tier-price">10 $</span>
-            <span class="tier-tag" data-i18n="tier_online_tag">En vente</span>
-          </li>
-          <li class="tier">
-            <span class="tier-name" data-i18n="tier_door">À la porte</span>
-            <span class="tier-price">12 $</span>
-            <span class="tier-tag" data-i18n="tier_door_tag">Le soir même</span>
-          </li>
-        </ul>
+          <ul class="tiers">
+            <li class="tier tier--live">
+              <span class="tier-name" data-i18n="tier_online">En ligne</span>
+              <span class="tier-price">10 $</span>
+              <span class="tier-tag" data-i18n="tier_online_tag">En vente</span>
+            </li>
+            <li class="tier">
+              <span class="tier-name" data-i18n="tier_door">À la porte</span>
+              <span class="tier-price">12 $</span>
+              <span class="tier-tag" data-i18n="tier_door_tag">Le soir même</span>
+            </li>
+          </ul>
+        </div>
 
-        <a class="btn btn--fill btn--lg btn--block" data-ticket-link href="#billets" data-magnetic data-i18n="tickets_cta">Acheter un billet</a>
+        <!-- Billetterie Hi.Events — événement 10580. Le script est chargé en bas de page. -->
+        <div class="ticket-widget" id="ticketWidget">
+          <div data-hievents-id="10580"
+               data-hievents-widget-type="widget"
+               data-hievents-widget-version="1.0"
+               data-hievents-locale="fr"
+               data-hievents-primary-color="#3d7bff"
+               data-hievents-primary-text-color="#ffffff"
+               data-hievents-secondary-color="#0e1533"
+               data-hievents-secondary-text-color="#eaf0ff"
+               data-hievents-background-color="#0a0f30"
+               data-hievents-padding="16px"
+               data-hievents-autoresize="true"
+               data-hievents-continue-button-text="Continuer"
+               class="hievents-widget"></div>
+        </div>
+
         <p class="fine" data-i18n="tickets_fine">Quantité limitée · 18 + · non remboursable · billet transférable</p>
       </div>
     </div>
@@ -304,6 +322,9 @@
     </nav>
     <p class="foot-legal">© <span id="year">2026</span> CLUB 2000 — <span data-i18n="foot_rights">Tous droits réservés</span></p>
   </footer>
+
+  <!-- billetterie Hi.Events (widget #ticketWidget) -->
+  <script async src="https://app.hi.events/widget.js"></script>
 
   <!-- défilement à inertie (désactivé si prefers-reduced-motion) -->
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>

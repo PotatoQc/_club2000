@@ -102,6 +102,14 @@ ticket holders by email the day before.
   the ticket card, click-to-open full size. It carries the "AFTER HOURS" tagline,
   the "TECHNO THROWBACK" strap, date, venue and prices. Source of truth for the
   visual identity and the door price.
+- **Site icon / link preview** (2026-08-30): user supplied `hero.jpg`
+  (2000×2000 "club 2000" wordmark on a starfield + pink perspective grid).
+  Generated from it: `favicon.ico` (16/32/48/64), `icon-192.png`, `icon-512.png`,
+  `apple-touch-icon.png`, and `og-image.jpg` (1200×630), all wired in the
+  `<head>`. `hero.jpg` source is gitignored. NB: this asset leans on the
+  synthwave grid / pink glow that DESIGN.md lists as anti-references for the page
+  itself — kept because the client chose it as the brand icon; it does not appear
+  in the page body.
 - Techno-event cues in the hero: "NUIT TECHNO" eyebrow, an animated equalizer,
   and a "Techno — 130-142 BPM — mur de son" tag. **The BPM range is genre-generic,
   not a confirmed setlist fact** — adjust or drop if it should be specific.

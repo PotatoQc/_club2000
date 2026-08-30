@@ -19,6 +19,8 @@ gracefully if unreachable; without the widget script the ticket area is empty.
 | `style.css` | all styling, tokens in `:root` |
 | `main.js` | i18n, countdown, nav, scroll motion, hero video |
 | `club-hero.mp4` / `.jpg` | hero background video (2.8 MB) + poster |
+| `favicon.ico` · `icon-192/512.png` · `apple-touch-icon.png` · `og-image.jpg` | site icon + link preview, generated from `hero.jpg` (gitignored source) |
+| `after-hours.jpg` · `dj-*.jpg` | flyer + DJ photos |
 | `PRODUCT.md` | product truth (audience, event facts, constraints) |
 | `DESIGN.md` | the visual system + motion spec |
 

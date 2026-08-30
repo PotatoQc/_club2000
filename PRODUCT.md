@@ -93,7 +93,10 @@ ticket holders by email the day before.
   new tab instead). Notes: the hi.events ticket is named just "Ticket" — rename
   it in the hi.events dashboard for consistency; `locale=fr` but some widget
   chrome stays English (hi.events limitation); the widget adds a ~CA$0.64 fee and
-  a small "Try Hi.Events Free" credit line.
+  a small "Try Hi.Events Free" credit line. **`data-hievents-secondary-color`
+  doubles as the +/- stepper icon colour — it MUST contrast with
+  `background-color` (2026-08-30 bug: `#0e1533` ≈ the `#0a0f30` bg made the "+"
+  invisible on the deployed site; fixed to `#5eb0ff`).**
 - **Official flyer** — `After Hours.png` (user-supplied, gitignored); web version
   `after-hours.jpg` (1240 px, tracked) is shown in the `#billets` section beside
   the ticket card, click-to-open full size. It carries the "AFTER HOURS" tagline,

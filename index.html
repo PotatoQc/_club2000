@@ -29,12 +29,17 @@
     </div>
   </div>
 
-  <!-- ══ AMBIANCE ══ -->
+  <!-- ══ AMBIANCE — fond composite (voir style.css § AMBIANCE) ══ -->
   <div class="bg" aria-hidden="true">
+    <span class="bg-grad"></span>
     <span class="blob blob--a"></span>
     <span class="blob blob--b"></span>
+    <span class="blob blob--c"></span>
+    <span class="bg-mesh"></span>
+    <span class="bg-dots"></span>
     <span class="scanlines"></span>
     <span class="grain"></span>
+    <span class="bg-mark">CLUB 2000 · TECHNO THROWBACK · AFTER HOURS · 12.09.26 · </span>
   </div>
   <div class="scroll-bar" id="scrollBar" aria-hidden="true"></div>
 
@@ -155,40 +160,50 @@
     <p class="kicker"><span>02</span> <span data-i18n="lineup_kicker">Line-up</span></p>
     <h2 class="section-title" data-split data-speed="-0.05" data-i18n="lineup_title">Deux artistes, <em>une nuit</em></h2>
 
-    <!-- ✏️ À MODIFIER : noms, photos (dj-1.jpg / dj-2.jpg), bios et liens d'écoute -->
     <div class="dj-list">
+      <!-- Azathø — source : DJ/azatho/ (description.txt + photos) -->
       <article class="dj" data-reveal>
         <div class="dj-photo">
-          <!-- ✏️ Remplace par : <img src="dj-1.jpg" alt="Portrait de [nom]" width="480" height="480" /> -->
-          <span class="dj-photo-ph">01</span>
+          <img src="dj-azatho.jpg" alt="Azathø" width="1000" height="1250" loading="lazy" decoding="async" />
+          <span class="dj-index" aria-hidden="true">01</span>
         </div>
         <div class="dj-body">
-          <p class="dj-role" data-i18n="dj1_role">Tête d'affiche</p>
-          <h3 class="dj-name">Artiste à confirmer</h3>
-          <p class="dj-bio" data-i18n="dj1_bio">Descriptif de l'artiste — parcours, style, sets marquants. Deux ou trois phrases suffisent.</p>
-          <p class="dj-tracks-lab" data-i18n="listen">À écouter</p>
-          <ul class="dj-tracks">
-            <li><a href="#" rel="noopener">Track 01</a></li>
-            <li><a href="#" rel="noopener">Track 02</a></li>
-            <li><a href="#" rel="noopener">Track 03</a></li>
+          <p class="dj-role" data-i18n="dj1_role">DJ · Montréal</p>
+          <h3 class="dj-name">Azathø</h3>
+          <ul class="dj-tags">
+            <li data-i18n="dj1_tag1">Hard techno</li>
+            <li data-i18n="dj1_tag2">Groove hypnotique</li>
+          </ul>
+          <p class="dj-bio" data-i18n="dj1_bio">Azathø navigue entre la puissance brute de la hard techno et l’énergie hypnotique du groove. Ses sets enchaînent rythmes percutants, basses lourdes et transitions rapides, avec une seule intention : créer de l’énergie et garder le plancher en mouvement.</p>
+          <div class="dj-shot"><img src="dj-azatho-live.jpg" alt="Azathø" width="960" height="640" loading="lazy" decoding="async" /></div>
+          <p class="dj-lab" data-i18n="listen">À écouter</p>
+          <ul class="dj-links">
+            <li><a href="https://on.soundcloud.com/KPeZy4rLyihnXblZi5" target="_blank" rel="noopener">SoundCloud</a></li>
+            <li><a href="https://fr.ra.co/dj/azatho" target="_blank" rel="noopener">Resident Advisor</a></li>
           </ul>
         </div>
       </article>
 
+      <!-- DJoJo (Johans Dos Santos) — source : DJ/djojo/ (press kit PDF) -->
       <article class="dj" data-reveal>
         <div class="dj-photo">
-          <!-- ✏️ Remplace par : <img src="dj-2.jpg" alt="Portrait de [nom]" width="480" height="480" /> -->
-          <span class="dj-photo-ph">02</span>
+          <img src="dj-djojo.jpg" alt="DJoJo — Johans Dos Santos" width="666" height="832" loading="lazy" decoding="async" />
+          <span class="dj-index" aria-hidden="true">02</span>
         </div>
         <div class="dj-body">
-          <p class="dj-role" data-i18n="dj2_role">Invité·e</p>
-          <h3 class="dj-name">Artiste à confirmer</h3>
-          <p class="dj-bio" data-i18n="dj2_bio">Descriptif de l'artiste — parcours, style, sets marquants. Deux ou trois phrases suffisent.</p>
-          <p class="dj-tracks-lab" data-i18n="listen">À écouter</p>
-          <ul class="dj-tracks">
-            <li><a href="#" rel="noopener">Track 01</a></li>
-            <li><a href="#" rel="noopener">Track 02</a></li>
-            <li><a href="#" rel="noopener">Track 03</a></li>
+          <p class="dj-role" data-i18n="dj2_role">DJ / Producteur · Montpellier ⇄ Montréal</p>
+          <h3 class="dj-name">DJoJo</h3>
+          <ul class="dj-tags">
+            <li data-i18n="dj2_tag1">Hardgroove</li>
+            <li data-i18n="dj2_tag2">Latin core</li>
+            <li data-i18n="dj2_tag3">Hypnotique</li>
+          </ul>
+          <p class="dj-bio" data-i18n="dj2_bio">Natif du sud de la France, Johans « DJoJo » Dos Santos baigne depuis toujours dans la musique latine. Ses origines brésiliennes et son amour du groove le poussent à mixer et produire une musique dansante — des sonorités énergiques, profondes et percutantes.</p>
+          <div class="dj-shot"><img src="dj-djojo-live.jpg" alt="DJoJo" width="960" height="640" loading="lazy" decoding="async" /></div>
+          <p class="dj-lab" data-i18n="dj2_sets_lab">Sets récents</p>
+          <p class="dj-sets" data-i18n="dj2_sets">BoumBoum · RedRoom (IleSoniq) · 212 Club · Shameless MTP · Polytechnique Montréal · Bar Les Torchés</p>
+          <ul class="dj-links">
+            <li><a href="https://www.instagram.com/off.djojo_/" target="_blank" rel="noopener">Instagram</a></li>
           </ul>
         </div>
       </article>
@@ -210,25 +225,37 @@
 
   <!-- ══ BILLETS ══ -->
   <section id="billets" class="tickets reveal">
-    <div class="ticket-card glass">
-      <p class="kicker"><span>04</span> <span data-i18n="tickets_kicker">Billets</span></p>
-      <h2 class="section-title" data-split data-speed="-0.04" data-i18n="tickets_title">Entre dans le <em>CLUB 2000</em></h2>
+    <div class="tickets-inner">
+      <!-- Affiche officielle — source : "After Hours.png" (gitignored), version web : after-hours.jpg -->
+      <a class="ticket-poster" href="after-hours.jpg" target="_blank" rel="noopener"
+         data-reveal data-i18n-attr="aria-label" data-i18n="poster_aria"
+         aria-label="Ouvrir l'affiche AFTER HOURS en plein écran">
+        <img src="after-hours.jpg" width="1240" height="1604" loading="lazy" decoding="async"
+             data-i18n-attr="alt" data-i18n="poster_alt"
+             alt="Affiche AFTER HOURS — CLUB 2000, 12 septembre, 2037 rue Saint-Denis, Montréal" />
+        <span class="ticket-poster__tag" data-i18n="poster_tag">Affiche</span>
+      </a>
 
-      <ul class="tiers">
-        <li class="tier tier--live">
-          <span class="tier-name" data-i18n="tier_online">En ligne</span>
-          <span class="tier-price">10 $</span>
-          <span class="tier-tag" data-i18n="tier_online_tag">En vente</span>
-        </li>
-        <li class="tier">
-          <span class="tier-name" data-i18n="tier_door">À la porte</span>
-          <span class="tier-price">15 $</span>
-          <span class="tier-tag" data-i18n="tier_door_tag">Le soir même</span>
-        </li>
-      </ul>
+      <div class="ticket-card glass">
+        <p class="kicker"><span>04</span> <span data-i18n="tickets_kicker">Billets</span></p>
+        <h2 class="section-title" data-split data-speed="-0.04" data-i18n="tickets_title">Entre dans le <em>CLUB 2000</em></h2>
 
-      <a class="btn btn--fill btn--lg btn--block" data-ticket-link href="#billets" data-magnetic data-i18n="tickets_cta">Acheter un billet</a>
-      <p class="fine" data-i18n="tickets_fine">Quantité limitée · 18 + · non remboursable · billet transférable</p>
+        <ul class="tiers">
+          <li class="tier tier--live">
+            <span class="tier-name" data-i18n="tier_online">En ligne</span>
+            <span class="tier-price">10 $</span>
+            <span class="tier-tag" data-i18n="tier_online_tag">En vente</span>
+          </li>
+          <li class="tier">
+            <span class="tier-name" data-i18n="tier_door">À la porte</span>
+            <span class="tier-price">12 $</span>
+            <span class="tier-tag" data-i18n="tier_door_tag">Le soir même</span>
+          </li>
+        </ul>
+
+        <a class="btn btn--fill btn--lg btn--block" data-ticket-link href="#billets" data-magnetic data-i18n="tickets_cta">Acheter un billet</a>
+        <p class="fine" data-i18n="tickets_fine">Quantité limitée · 18 + · non remboursable · billet transférable</p>
+      </div>
     </div>
   </section>
 

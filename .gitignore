@@ -1,5 +1,7 @@
 # --- Large source assets (the shipped, optimized versions are tracked) ---
 test.mp4
+DJ/
+After Hours.png
 
 # --- Dependencies ---
 node_modules/

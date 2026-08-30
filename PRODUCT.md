@@ -70,10 +70,28 @@ ticket holders by email the day before.
 - Door policy: 18+, photo ID. **Re-entry is allowed all night** (this reverses
   the earlier no-re-entry rule).
 - **A free gift goes to the first 30 people to arrive** at the door.
-- Line-up is **2 DJs**; each needs a profile photo, a short bio, and a few track
-  links. Names/photos/bios/links are still placeholder.
-- Tickets: **10 $ en ligne, 15 $ à la porte**. The online ticketing URL
-  (`CONFIG.ticketUrl`) is not set yet — buttons show "Billetterie bientôt".
+- Line-up is **2 DJs**, both confirmed (source: user's `DJ/` folder — `DJ/` is
+  gitignored, shipped photos are `dj-*.jpg` in the repo root):
+  - **Azathø** — DJ, Montréal. Hard techno + hypnotic groove. Links: SoundCloud
+    (`on.soundcloud.com/KPeZy4rLyihnXblZi5`), Resident Advisor (`fr.ra.co/dj/azatho`).
+    2 photos supplied (portrait + warehouse-booth live shot).
+  - **DJoJo** — Johans Dos Santos. DJ / producer, Montpellier ⇄ Montréal.
+    Hardgroove / Latin core / hypnotic; Brazilian roots. Recent sets: BoumBoum,
+    RedRoom (IleSoniq), 212 Club, Shameless MTP, Polytechnique Montréal, Bar Les
+    Torchés, and more. Link: Instagram (`@off.djojo_`). Booking email in the press
+    kit is `djojomontreal@gmail.com` — **a personal Gmail, deliberately left OFF
+    the public page**; add only if the artist confirms.
+  - Bios are on `dj1_*` / `dj2_*` keys in `I18N` (FR + EN). SoundCloud/RA/IG URLs
+    are hard-coded in the two `.dj` articles in `index.html`.
+- Tickets: **10 $ en ligne, 12 $ à la porte** (door price changed 15 → 12 on
+  2026-08-30 to match the official flyer — confirm if 15 was correct). The online
+  ticketing URL (`CONFIG.ticketUrl`) is not set yet — buttons show "Billetterie
+  bientôt".
+- **Official flyer** — `After Hours.png` (user-supplied, gitignored); web version
+  `after-hours.jpg` (1240 px, tracked) is shown in the `#billets` section beside
+  the ticket card, click-to-open full size. It carries the "AFTER HOURS" tagline,
+  the "TECHNO THROWBACK" strap, date, venue and prices. Source of truth for the
+  visual identity and the door price.
 - Techno-event cues in the hero: "NUIT TECHNO" eyebrow, an animated equalizer,
   and a "Techno — 130-142 BPM — mur de son" tag. **The BPM range is genre-generic,
   not a confirmed setlist fact** — adjust or drop if it should be specific.
@@ -89,8 +107,9 @@ ticket holders by email the day before.
   first visit follows the browser language; the choice persists in localStorage
   (`club2000:lang`). Every visible string has a key in `I18N` (main.js) — new
   copy must be added in both languages.
-- Still placeholder: DJ names/photos/bios/track links, ticketing URL, real
-  Instagram/SoundCloud handles, contact email. Do not invent these.
+- Still placeholder: ticketing URL, the CLUB 2000 brand's own Instagram /
+  SoundCloud / contact email in the footer. Do not invent these. (The two DJs'
+  own links are now real — see the line-up entry above.)
 - The "éditions précédentes" section was removed at the user's request.
 - `club2000.png` is ~4.7 MB and needs compression before launch.
 - Language is Québécois French throughout.
@@ -105,12 +124,14 @@ ticket holders by email the day before.
   high-gloss revival of early-2000s rave culture, not 80s synthwave.
 - Modern execution with dynamic, animation-heavy interaction is a requirement,
   not a nice-to-have.
-- **Poster reference** (`examplejpg.jpg`, added 2026-08-29): the event poster is
-  fully **monochrome electric-blue on deep navy** — zero pink/warmth — with bold
-  condensed techno lettering ("TECHNO THROWBACK", "AFTER HOURS"). The site
-  palette + display font were re-keyed to match (colours and font only). Note:
-  the poster shows **door price 12 $** and an **"AFTER HOURS"** tagline that the
-  site copy does not yet reflect — confirm with the client before changing copy.
+- **Poster / flyer** (clean version `After Hours.png` → web `after-hours.jpg`,
+  2026-08-30; the earlier `examplejpg.jpg` was a photo of a screen). Fully
+  **monochrome electric-blue on deep navy** — zero pink/warmth — with bold
+  condensed techno lettering ("TECHNO THROWBACK", "AFTER HOURS"), a dot-halftone
+  wave, wireframe hexes, liquid-chrome panel and stacked ghost type. The site's
+  palette, display font, **composite background** and the door price were all
+  keyed to it. The flyer itself is embedded in `#billets`. Still open: whether
+  "AFTER HOURS" should also appear in the hero / nav copy (currently "Y2K RAVE").
 
 ### Superseded (2026-08-29) — anti-references, do not reinstate
 
@@ -127,8 +148,9 @@ ticket holders by email the day before.
 
 - Real: the logo (`club2000.png`), the numbered-edition concept, the door policy,
   the current edition's date/time/venue, the FAQ answers.
-- Not yet available (do not fabricate): artist names, ticketing link, prices,
-  Instagram/SoundCloud URLs, contact email (`hello@club2000.example` is a
+- Real: the two DJs' names, bios, styles, gig history and links (from `DJ/`).
+- Not yet available (do not fabricate): ticketing link, the CLUB 2000 brand's own
+  Instagram/SoundCloud URLs and contact email (`hello@club2000.example` is a
   placeholder), past-edition photography.
 
 ## Product Principles

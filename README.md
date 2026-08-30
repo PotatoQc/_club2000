@@ -22,10 +22,13 @@ Petch, Instrument Sans, Space Mono) and [Lenis](https://github.com/darkroomengin
 
 ## Look
 
-Deep-navy Y2K-revival techno, keyed to the event poster (`examplejpg.jpg`):
+Deep-navy Y2K-revival techno, keyed to the **AFTER HOURS flyer** (`after-hours.jpg`):
 liquid-chrome wordmark, electric-blue accents, one cobalt signal colour used
-sparingly, a dark-filtered background video, animated equalizer. Fully
-monochrome blue — no pink/warmth. Tokens live in `style.css` under `/* Tokens */`.
+sparingly, a dark-filtered background video, animated equalizer. Fully monochrome
+blue — no pink/warmth. The post-hero background is a composite (`.bg` in
+`style.css`): depth gradient + 3 blurred colour fields + wireframe mesh +
+halftone dots + scanlines + grain + a ghost wordmark down the right edge.
+Tokens live in `style.css` under `/* Tokens */`.
 
 | Token | Value |
 |---|---|
@@ -58,10 +61,13 @@ the HTML — `applyLang()` overwrites the HTML on load. Look for `data-i18n` in
 
 ### 3. Content marked `À MODIFIER` in `index.html`
 
-- **Line-up** — 2 DJ cards: names, bios (`I18N` keys `dj1_*` / `dj2_*`), track
-  links, and photos: replace `<span class="dj-photo-ph">` with
-  `<img src="dj-1.jpg" alt="…" width="480" height="480" />`
-- **Tickets** — tiers and prices (`<ul class="tiers">`)
+- **Line-up** — 2 DJ profile cards (Azathø, DJoJo). Names, roles, style tags and
+  bios live in `I18N` (`dj1_*` / `dj2_*`, FR + EN); the artist links are hard-coded
+  `<a>` in the two `.dj` articles. Photos: `dj-<name>.jpg` (4:5 portrait) +
+  `dj-<name>-live.jpg` (3:2). Raw source material is under `DJ/` (gitignored).
+- **Tickets** — tiers and prices (`<ul class="tiers">`, literal text, not i18n)
+- **Flyer** — `#billets` shows `after-hours.jpg` (source `After Hours.png`,
+  gitignored). Swap by re-exporting to the same filename; keep it portrait.
 - **Footer** — real Instagram / SoundCloud / email
 
 ### 4. Hero background video

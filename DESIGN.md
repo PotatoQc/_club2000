@@ -32,8 +32,9 @@ are untouched.
 | `--holo` | electric-blue chrome gradient | the big date; echoes the poster's blue "marble" panel |
 | `--r-sm/md/pill` | 10 / 18 / 999px | radius scale |
 
-Blobs run at `opacity 0.12–0.18` (haze, not glow). Both blobs now read blue —
-correct for the monochrome poster.
+Blobs run at `opacity 0.10–0.16` (haze, not glow), all blue — correct for the
+monochrome poster. See **Composite background** under Materials for the full
+layer stack.
 
 ## Type
 
@@ -55,8 +56,21 @@ correct for the monochrome poster.
   1px cool border, inner top highlight. Info cards, ticket card.
 - **Holo sheen** — `--holo` at low opacity with `mix-blend-mode: color-dodge`,
   intensifies + shifts position on hover (edition tiles).
-- **Gradient-mesh blobs** — 2 fixed blurred radial blobs (volt/azure),
-  `mix-blend-mode: screen`, slow independent `drift`. The whole background.
+- **Composite background** (`.bg`, re-worked 2026-08-30 — the flat blue mesh
+  "read as AI"). Stacked, mostly static layers keyed to the AFTER HOURS flyer:
+  1. `.bg-grad` — a depth gradient (cool halo top, darkening to `#04061a` bottom);
+     never a flat fill.
+  2. 3 blurred colour fields — `.blob--a/b` (volt / azure radial), `.blob--c` (a
+     **conic** gradient = liquid-chrome shimmer), `mix-blend: screen`, slow
+     translate `drift`.
+  3. `.bg-mesh` — faint triangular wireframe, masked to two corner patches.
+  4. `.bg-dots` — screen-print halftone dot field, radially masked dense at
+     lower-left (the flyer's dot wave).
+  5. `.scanlines` + a stronger fine `.grain` (kills the "too clean" look).
+  6. `.bg-mark` — a huge ghost wordmark ("CLUB 2000 · TECHNO THROWBACK · AFTER
+     HOURS · 12.09.26") down the right edge, outlined at ~7% — the flyer's stacked
+     type. Hidden ≤ 1180px.
+  Measured ~10 ms/frame — the extra layers are compositor-cheap.
 
 ## Motion (all gated by `prefers-reduced-motion`)
 
@@ -70,9 +84,9 @@ correct for the monochrome poster.
 | Hero wordmark | `[data-lines]` — each line rises out of an `overflow:hidden` mask, staggered; starts after `club2000:ready` |
 | Hero scroll-out | as the hero leaves, `.hero-content` lifts (`translateY` to 64px) and fades to 0, the background video scales to `1.12` — lerped (0.12), only computed in the top-viewport band. Wrapper transform so `[data-rise]` entrance is untouched. |
 | Section titles | `[data-split]` — JS word-wrap, each word rises from an `overflow:hidden` mask, 55ms stagger, fires at 40% in view |
-| Sections / DJ cards | `.reveal`→`.in` and `[data-reveal]`→`.shown`, translate/fade stagger. DJ photo also clip-wipes open (`clip-path: inset(0 0 100% 0)` → `0`) with the inner image easing from `scale(1.14)`; info cards stagger 80ms. |
+| Sections / DJ cards | `.reveal`→`.in` and `[data-reveal]`→`.shown`, translate/fade stagger. The DJ **main** photo also clip-wipes open (`clip-path: inset(0 0 100% 0)` → `0`) with the inner image easing from `scale(1.14)`; the 3:2 secondary shot rides the card fade only; info cards stagger 80ms. |
 | Parallax | `[data-speed]` on the big date + the four section titles (`-0.04/-0.05`); **lerped** (0.085) toward a viewport-relative target, clamped ±160px. Independent `translate` property, composes with the reveal `transform`. |
-| Blobs | 2 blurred radial blobs (`blur 64px`), slow `drift` keyframes only |
+| Background blobs | 3 blurred colour fields (`blur 70px`), slow translate-only `drift` (a/b radial, c conic); mesh/dots/scanlines/grain/mark are static |
 | Reveals | translateY(32–56px) + slight `scale`, 0.7–0.9s exponential ease, nth-child stagger. No blur. |
 | Cursor | native system cursor. A custom cursor was tried and **removed** — repeated "invisible mouse" bugs. Do not reintroduce. |
 | Techno signals | hero eyebrow "NUIT TECHNO"; animated CSS equalizer (`.eq`, `scaleY`); "130-142 BPM · mur de son" tag |
@@ -85,6 +99,7 @@ Also cut for performance: per-frame section `skewY`, per-frame blob `scale`,
 every section. Scroll is back to ~9 ms/frame.
 | Magnetic | `[data-magnetic]` CTAs lerp toward the pointer within ~40px of their bounds (strength 0.2), spring back on leave. Fine pointers only. |
 | DJ photo hover | `scale(1.025)` + holo `::before` opacity bump |
+| Flyer hover | `.ticket-poster` lifts `translateY(-5px)`, volt border + glow, bottom scrim fades in |
 | Countdown | digits `tick` (slide + deblur) on change; seconds never animate |
 | Buttons | diagonal `sheen` sweep on hover |
 
@@ -106,8 +121,12 @@ title-layer parallax. All ride the existing shared `rAF` loop; measured
   via `em`) → content.
 - Sections: hero (event title **Y2K RAVE** in chrome) · ticker (seamless loop,
   scroll-momentum reactive) · la soirée (date + countdown + facts + CTA)
-  · line-up (2 DJ cards: 5:4 photo, role, name, bio, track links) · infos (glass
-  grid) · billets (glass card, 2 tiers: 10 $ / 15 $) · faq (`<details>`) · footer.
+  · line-up (2 DJ profile cards: 4:5 portrait with outlined index numeral, role,
+    name + hairline, style-tag chips, bio, a 3:2 live/mood shot, then artist links
+    or recent-sets line — Azathø / DJoJo) · infos (glass
+  grid) · billets (two-up on desktop: the framed **AFTER HOURS flyer**
+  `after-hours.jpg`, click-to-open full size, + the glass ticket card — 2 tiers,
+  10 $ online / 12 $ door, matching the flyer) · faq (`<details>`) · footer.
 - **Bilingual FR / EN**: `data-i18n` keys on every text node, `data-i18n-attr`
   for attributes; `I18N` dict + `applyLang()` in main.js; `.lang-toggle` in nav;
   `langListeners` re-render JS-generated copy (countdown note, ticket fallback).

@@ -13,7 +13,7 @@ one `main.js`. No build step, no framework. Deployable as a plain folder on any
 static host (GitHub Pages, Netlify, Vercel). Keep it buildless unless the user
 decides otherwise.
 
-Runtime deps (script tags, no toolchain): Google Fonts (Michroma / Instrument
+Runtime deps (script tags, no toolchain): Google Fonts (Chakra Petch / Instrument
 Sans / Space Mono) and **Lenis** (inertia scroll) from jsDelivr CDN. Both degrade
 gracefully if unreachable — Lenis absence falls back to native smooth scroll and
 the other motion still runs off `window.scrollY`.
@@ -105,6 +105,12 @@ ticket holders by email the day before.
   high-gloss revival of early-2000s rave culture, not 80s synthwave.
 - Modern execution with dynamic, animation-heavy interaction is a requirement,
   not a nice-to-have.
+- **Poster reference** (`examplejpg.jpg`, added 2026-08-29): the event poster is
+  fully **monochrome electric-blue on deep navy** — zero pink/warmth — with bold
+  condensed techno lettering ("TECHNO THROWBACK", "AFTER HOURS"). The site
+  palette + display font were re-keyed to match (colours and font only). Note:
+  the poster shows **door price 12 $** and an **"AFTER HOURS"** tagline that the
+  site copy does not yet reflect — confirm with the client before changing copy.
 
 ### Superseded (2026-08-29) — anti-references, do not reinstate
 

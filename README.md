@@ -5,8 +5,8 @@ One-page site for **Y2K RAVE**, a techno night in Montréal presented by CLUB 20
 Static site — **no build, no framework**. Open `index.html` in a browser, or host
 the folder as-is (GitHub Pages, Netlify, Vercel, any static server).
 
-Runtime dependencies are `<script>` / `<link>` tags only: Google Fonts (Michroma,
-Instrument Sans, Space Mono) and [Lenis](https://github.com/darkroomengineering/lenis)
+Runtime dependencies are `<script>` / `<link>` tags only: Google Fonts (Chakra
+Petch, Instrument Sans, Space Mono) and [Lenis](https://github.com/darkroomengineering/lenis)
 (smooth scroll) from a CDN. Both degrade gracefully if unreachable.
 
 ## Files
@@ -22,16 +22,17 @@ Instrument Sans, Space Mono) and [Lenis](https://github.com/darkroomengineering/
 
 ## Look
 
-Dark, near-black Y2K-revival techno: liquid-chrome wordmark, cool ice/steel
-accents, one hot-pink signal colour used sparingly, a dark-filtered background
-video, animated equalizer. Tokens live in `style.css` under `/* Tokens */`.
+Deep-navy Y2K-revival techno, keyed to the event poster (`examplejpg.jpg`):
+liquid-chrome wordmark, electric-blue accents, one cobalt signal colour used
+sparingly, a dark-filtered background video, animated equalizer. Fully
+monochrome blue — no pink/warmth. Tokens live in `style.css` under `/* Tokens */`.
 
 | Token | Value |
 |---|---|
-| `--ink` | `#020204` |
-| `--pink` | `#ff2ea6` (signal only) |
-| `--cyan` | `#3ddfff` |
-| Display / body / data fonts | Michroma / Instrument Sans / Space Mono |
+| `--ink` | `#05081f` |
+| `--volt` | `#3d7bff` (signal only; was `--pink`) |
+| `--cyan` | `#5eb0ff` |
+| Display / body / data fonts | Chakra Petch / Instrument Sans / Space Mono |
 
 Motion: Lenis inertia scroll, magnetic CTAs, masked word-by-word heading reveals,
 scroll parallax on the date. **Everything stops under `prefers-reduced-motion`.**

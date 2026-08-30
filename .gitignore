@@ -11,6 +11,10 @@ node_modules/
 .impeccable/hook.cache.json
 .impeccable/live/
 
+# --- Local backups / scratch ---
+_backup-pre-poster/
+examplejpg.jpg
+
 # --- OS / editor cruft ---
 .DS_Store
 Thumbs.db

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" data-i18n-attr="content" data-i18n="meta_desc" content="CLUB 2000 présente Y2K RAVE — une nuit techno à Montréal. Le son de l'an 2000, rejoué plus fort. 12 septembre 2026." />
-  <meta name="theme-color" content="#05060c" />
+  <meta name="theme-color" content="#05081f" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="CLUB 2000 — Y2K RAVE" />
@@ -14,11 +14,20 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Instrument+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- ══ INTRO — rideau de chargement ══ -->
+  <div class="intro" id="intro" role="presentation">
+    <div class="intro__inner">
+      <span class="intro__label">CLUB 2000</span>
+      <span class="intro__bar"><span class="intro__fill" id="introFill"></span></span>
+      <span class="intro__count" id="introCount">00</span>
+    </div>
+  </div>
 
   <!-- ══ AMBIANCE ══ -->
   <div class="bg" aria-hidden="true">
@@ -64,43 +73,49 @@
              data-src-mp4="club-hero.mp4"></video>
     </div>
 
-    <p class="eyebrow" data-rise>
-      <span class="eyebrow-led"></span>
-      <span data-i18n="hero_eyebrow">CLUB 2000 · Nuit techno</span>
-    </p>
+    <div class="hero-content">
+      <p class="eyebrow" data-rise>
+        <span class="eyebrow-led"></span>
+        <span data-i18n="hero_eyebrow">CLUB 2000 · Nuit techno</span>
+      </p>
 
-    <h1 class="wordmark" data-rise data-lines>
-      <span class="chrome">Y2K</span>
-      <span class="chrome">RAVE</span>
-    </h1>
+      <h1 class="wordmark" data-rise data-lines>
+        <span class="chrome">Y2K</span>
+        <span class="chrome">RAVE</span>
+      </h1>
 
-    <p class="hero-sub" data-rise data-i18n="hero_sub">
-      Six heures de techno. Le son de l'an 2000, rejoué plus fort.
-    </p>
+      <p class="hero-sub" data-rise data-i18n="hero_sub">
+        Six heures de techno. Le son de l'an 2000, rejoué plus fort.
+      </p>
 
-    <p class="hero-tags" data-rise>
-      <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-      <span data-i18n="hero_tags">Techno — 130-142 BPM — mur de son</span>
-    </p>
+      <p class="hero-tags" data-rise>
+        <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+        <span data-i18n="hero_tags">Techno — 130-142 BPM — mur de son</span>
+      </p>
 
-    <div class="hero-cta" data-rise>
-      <a class="btn btn--fill btn--lg" href="#billets" data-magnetic data-i18n="hero_cta_primary">Réserver ma place</a>
-      <a class="btn btn--ghost btn--lg" href="#soiree" data-magnetic>
-        <span data-i18n="hero_cta_secondary">Voir la soirée</span>
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-      </a>
+      <div class="hero-cta" data-rise>
+        <a class="btn btn--fill btn--lg" href="#billets" data-magnetic data-i18n="hero_cta_primary">Réserver ma place</a>
+        <a class="btn btn--ghost btn--lg" href="#soiree" data-magnetic>
+          <span data-i18n="hero_cta_secondary">Voir la soirée</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </a>
+      </div>
     </div>
   </header>
 
   <!-- ══ TICKER — boucle infinie ══ -->
+  <!-- 6 copies identiques : la boucle CSS (`translateX(-50%)`) est déjà sans
+       raccord jusqu'à ~2800 px de large SANS JS. `ticker()` dans main.js ajuste
+       ensuite le nombre exact de copies et, en mouvement, couple la vitesse au
+       scroll. Le premier <span> porte les `data-i18n` — les autres sont clonés. -->
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
-      <span class="ticker-set">
-        <span>Y2K RAVE</span><b>✦</b><span data-i18n="ticker_1">Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span data-i18n="ticker_2">An 2000</span><b>✦</b>
-      </span>
-      <span class="ticker-set" aria-hidden="true">
-        <span>Y2K RAVE</span><b>✦</b><span data-i18n="ticker_1">Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span data-i18n="ticker_2">An 2000</span><b>✦</b>
-      </span>
+      <span class="ticker-set"><span>Y2K RAVE</span><b>✦</b><span data-i18n="ticker_1">Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span data-i18n="ticker_2">An 2000</span><b>✦</b></span>
+      <span class="ticker-set"><span>Y2K RAVE</span><b>✦</b><span>Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span>An 2000</span><b>✦</b></span>
+      <span class="ticker-set"><span>Y2K RAVE</span><b>✦</b><span>Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span>An 2000</span><b>✦</b></span>
+      <span class="ticker-set"><span>Y2K RAVE</span><b>✦</b><span>Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span>An 2000</span><b>✦</b></span>
+      <span class="ticker-set"><span>Y2K RAVE</span><b>✦</b><span>Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span>An 2000</span><b>✦</b></span>
+      <span class="ticker-set"><span>Y2K RAVE</span><b>✦</b><span>Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span>An 2000</span><b>✦</b></span>
     </div>
   </div>
 
@@ -138,7 +153,7 @@
   <!-- ══ LINE-UP ══ -->
   <section id="lineup" class="lineup reveal">
     <p class="kicker"><span>02</span> <span data-i18n="lineup_kicker">Line-up</span></p>
-    <h2 class="section-title" data-split data-i18n="lineup_title">Deux artistes, <em>une nuit</em></h2>
+    <h2 class="section-title" data-split data-speed="-0.05" data-i18n="lineup_title">Deux artistes, <em>une nuit</em></h2>
 
     <!-- ✏️ À MODIFIER : noms, photos (dj-1.jpg / dj-2.jpg), bios et liens d'écoute -->
     <div class="dj-list">
@@ -183,13 +198,13 @@
   <!-- ══ INFOS ══ -->
   <section id="infos" class="infos reveal">
     <p class="kicker"><span>03</span> <span data-i18n="info_kicker">Infos pratiques</span></p>
-    <h2 class="section-title" data-split data-i18n="info_title">Tout ce qu'il <em>faut savoir</em></h2>
+    <h2 class="section-title" data-split data-speed="-0.05" data-i18n="info_title">Tout ce qu'il <em>faut savoir</em></h2>
 
     <div class="info-grid">
-      <article class="glass"><h3 data-i18n="info_1_h">Date &amp; horaire</h3><p data-i18n="info_1_p">Samedi 12 septembre 2026. Portes à 22 h, fin à 04 h.</p></article>
-      <article class="glass"><h3 data-i18n="info_2_h">Emplacement</h3><p data-i18n="info_2_p">2037 rue Saint-Denis, Montréal — Quartier latin, à 3 min du métro Sherbrooke.</p></article>
-      <article class="glass"><h3 data-i18n="info_3_h">Accès</h3><p data-i18n="info_3_p">Événement 18 +. Pièce d'identité avec photo obligatoire. Entrées et sorties permises toute la nuit.</p></article>
-      <article class="glass"><h3 data-i18n="info_4_h">Sur place</h3><p data-i18n="info_4_p">Vestiaire, bar, point d'eau gratuit. Système son grand format. Cadeau aux 30 premières personnes. Zéro jugement.</p></article>
+      <article class="glass" data-reveal><h3 data-i18n="info_1_h">Date &amp; horaire</h3><p data-i18n="info_1_p">Samedi 12 septembre 2026. Portes à 22 h, fin à 04 h.</p></article>
+      <article class="glass" data-reveal><h3 data-i18n="info_2_h">Emplacement</h3><p data-i18n="info_2_p">2037 rue Saint-Denis, Montréal — Quartier latin, à 3 min du métro Sherbrooke.</p></article>
+      <article class="glass" data-reveal><h3 data-i18n="info_3_h">Accès</h3><p data-i18n="info_3_p">Événement 18 +. Pièce d'identité avec photo obligatoire. Entrées et sorties permises toute la nuit.</p></article>
+      <article class="glass" data-reveal><h3 data-i18n="info_4_h">Sur place</h3><p data-i18n="info_4_p">Vestiaire, bar, point d'eau gratuit. Système son grand format. Cadeau aux 30 premières personnes. Zéro jugement.</p></article>
     </div>
   </section>
 
@@ -197,7 +212,7 @@
   <section id="billets" class="tickets reveal">
     <div class="ticket-card glass">
       <p class="kicker"><span>04</span> <span data-i18n="tickets_kicker">Billets</span></p>
-      <h2 class="section-title" data-split data-i18n="tickets_title">Entre dans le <em>CLUB 2000</em></h2>
+      <h2 class="section-title" data-split data-speed="-0.04" data-i18n="tickets_title">Entre dans le <em>CLUB 2000</em></h2>
 
       <ul class="tiers">
         <li class="tier tier--live">
@@ -220,7 +235,7 @@
   <!-- ══ FAQ ══ -->
   <section id="faq" class="faq reveal">
     <p class="kicker"><span>05</span> <span data-i18n="faq_kicker">FAQ</span></p>
-    <h2 class="section-title" data-split data-i18n="faq_title">Questions <em>fréquentes</em></h2>
+    <h2 class="section-title" data-split data-speed="-0.05" data-i18n="faq_title">Questions <em>fréquentes</em></h2>
 
     <div class="faq-list" id="faqList">
       <details class="faq-item">

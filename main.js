@@ -15,6 +15,47 @@ const CONFIG = {
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ─────────────────────────────────────────────
+   INTRO — rideau de chargement : une barre se remplit,
+   puis le panneau se lève. Débloque le reste du site via
+   l'événement `club2000:ready`. Filet de sécurité CSS +
+   minuterie si le chargement traîne.
+   ───────────────────────────────────────────── */
+(function intro() {
+  const el = document.getElementById('intro');
+  if (!el) return;
+  const fill = document.getElementById('introFill');
+  const count = document.getElementById('introCount');
+
+  let done = false;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    el.classList.add('is-out');
+    document.body.classList.remove('intro-lock');
+    document.dispatchEvent(new Event('club2000:ready'));
+    el.addEventListener('transitionend', () => el.remove(), { once: true });
+    setTimeout(() => { if (el.isConnected) el.remove(); }, 1400);
+  };
+
+  if (reduceMotion) { el.remove(); return; }
+
+  document.body.classList.add('intro-lock');
+  const startedAt = performance.now();
+  let p = 0;
+  const step = () => {
+    const elapsed = performance.now() - startedAt;
+    const target = document.readyState === 'complete' ? 100 : 90;
+    p += (target - p) * 0.07;
+    if (fill) fill.style.transform = `scaleX(${(p / 100).toFixed(3)})`;
+    if (count) count.textContent = String(Math.min(100, Math.round(p))).padStart(2, '0');
+    if (p > 99 && elapsed > 700) return finish();
+    if (elapsed > 2600) return finish(); // filet de sécurité
+    requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+})();
+
+/* ─────────────────────────────────────────────
    I18N — dictionnaire FR / EN
    ───────────────────────────────────────────── */
 const I18N = {
@@ -200,13 +241,24 @@ function applyLang(lang) {
   const scrim = document.getElementById('navScrim');
   if (!bar) return;
 
-  const onScroll = () => bar.classList.toggle('scrolled', window.scrollY > 12);
+  let lastY = window.scrollY;
+  const onScroll = () => {
+    const y = window.scrollY;
+    bar.classList.toggle('scrolled', y > 12);
+    // rétraction directionnelle — jamais quand le menu mobile est ouvert
+    if (!links || !links.classList.contains('open')) {
+      if (y > 260 && y > lastY + 3) bar.classList.add('nav-hidden');
+      else if (y < lastY - 3 || y < 260) bar.classList.remove('nav-hidden');
+    }
+    lastY = y;
+  };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
   if (toggle && links) {
     const setOpen = (open) => {
       links.classList.toggle('open', open);
+      if (open) bar.classList.remove('nav-hidden');
       if (scrim) scrim.classList.toggle('on', open);
       toggle.setAttribute('aria-expanded', String(open));
       toggle.setAttribute('aria-label', open ? t('nav_close') : t('nav_open'));
@@ -253,23 +305,20 @@ function applyLang(lang) {
     return;
   }
 
-  /* ---- Lenis : inertie + smooth scroll ---- */
+  /* ---- Lenis : inertie + smooth scroll (instancié après l'intro) ---- */
   let lenis = null;
-  if (window.Lenis) {
-    lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1, touchMultiplier: 1.6 });
-    window.__lenis = lenis;
-    // liens d'ancrage → scroll piloté
-    document.addEventListener('click', (e) => {
-      const a = e.target instanceof Element ? e.target.closest('a[href^="#"]') : null;
-      if (!a) return;
-      const id = a.getAttribute('href');
-      if (id.length < 2) return;
-      const tgt = document.querySelector(id);
-      if (!tgt) return;
-      e.preventDefault();
-      lenis.scrollTo(tgt, { offset: -80 });
-    });
-  }
+  // liens d'ancrage → scroll piloté (Lenis si présent, sinon natif)
+  document.addEventListener('click', (e) => {
+    const a = e.target instanceof Element ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    const id = a.getAttribute('href');
+    if (id.length < 2) return;
+    const tgt = document.querySelector(id);
+    if (!tgt) return;
+    e.preventDefault();
+    if (lenis) lenis.scrollTo(tgt, { offset: -80 });
+    else tgt.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 
   const lerp = (a, b, n) => a + (b - a) * n;
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
@@ -291,12 +340,28 @@ function applyLang(lang) {
     window.addEventListener('pointermove', (e) => { pointerX = e.clientX; pointerY = e.clientY; pointerSeen = true; }, { passive: true });
   }
 
+  /* ---- héro : sortie cinétique au scroll (le contenu s'élève et s'efface,
+         la vidéo zoome légèrement) ---- */
+  const heroContent = document.querySelector('.hero-content');
+  const heroVideoEl = document.getElementById('heroVideo');
+  let heroFade = 0;
+
   const raf = (time) => {
     if (lenis) lenis.raf(time);
 
     const y = window.scrollY;
     setProgress();
     const vh = window.innerHeight;
+
+    // héro — actif seulement dans la zone de transition (haut de page)
+    if (heroContent && (y < vh || heroFade > 0.003)) {
+      const hp = clamp(y / (vh * 0.85), 0, 1);
+      heroFade = lerp(heroFade, hp, 0.12);
+      const on = heroFade > 0.003;
+      heroContent.style.transform = on ? `translateY(${(heroFade * 64).toFixed(1)}px)` : '';
+      heroContent.style.opacity = on ? Math.max(0, 1 - heroFade * 1.15).toFixed(3) : '';
+      if (heroVideoEl) heroVideoEl.style.transform = on ? `scale(${(1 + heroFade * 0.12).toFixed(4)})` : '';
+    }
 
     // parallaxe : cible = distance au centre du viewport × vitesse, rattrapée en douceur
     for (const l of layers) {
@@ -323,7 +388,19 @@ function applyLang(lang) {
 
     requestAnimationFrame(raf);
   };
-  requestAnimationFrame(raf);
+
+  const startLoop = () => {
+    if (window.Lenis && !lenis) {
+      lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1, touchMultiplier: 1.6 });
+      window.__lenis = lenis;
+    }
+    measure();
+    requestAnimationFrame(raf);
+  };
+
+  // attend la fin de l'intro pour ne rien calculer sous le rideau
+  if (document.getElementById('intro')) document.addEventListener('club2000:ready', startLoop, { once: true });
+  else startLoop();
 })();
 
 /* ─────────────────────────────────────────────
@@ -333,7 +410,10 @@ function applyLang(lang) {
   const items = document.querySelectorAll('[data-rise]');
   if (!items.length) return;
   if (reduceMotion) { items.forEach((el) => el.classList.add('up')); return; }
-  items.forEach((el, i) => setTimeout(() => el.classList.add('up'), 120 + i * 110));
+  const run = () => items.forEach((el, i) => setTimeout(() => el.classList.add('up'), i * 100));
+  // enchaîne après le lever du rideau ; sinon démarre tout de suite
+  if (document.getElementById('intro')) document.addEventListener('club2000:ready', run, { once: true });
+  else run();
 })();
 
 /* ─────────────────────────────────────────────
@@ -580,6 +660,131 @@ function applyLang(lang) {
       if (inView) play(); else v.pause();
     }, { threshold: 0.01 }).observe(hero);
   }
+})();
+
+/* ─────────────────────────────────────────────
+   TICKER — remplit la piste d'assez de copies pour boucler
+   sans vide, quelle que soit la largeur ou la langue.
+   En mouvement : la vitesse et le sens suivent l'élan du
+   scroll (inspiré des rubans de hobro.digital). Sinon,
+   simple boucle CSS.
+   ───────────────────────────────────────────── */
+(function ticker() {
+  const track = document.querySelector('.ticker-track');
+  if (!track) return;
+  const unit = track.querySelector('.ticker-set');
+  if (!unit) return;
+  const unitHTML = unit.outerHTML;
+  let halfW = 0;
+
+  const syncLang = () => {
+    track.querySelectorAll('[data-i18n]').forEach((el) => {
+      const v = I18N[currentLang] && I18N[currentLang][el.dataset.i18n];
+      if (v != null) el.innerHTML = v;
+    });
+  };
+
+  const container = () => track.parentElement || document.body;
+  let lastCW = -1;
+
+  // mesure une copie hors-flux : la piste en cours n'est jamais détruite
+  // avant d'avoir un résultat valide (sinon un resize raté la laisse cassée).
+  const measureSet = () => {
+    const probe = document.createElement('div');
+    probe.style.cssText = 'position:absolute;left:-99999px;top:0;display:flex;visibility:hidden;pointer-events:none;white-space:nowrap';
+    probe.innerHTML = unitHTML;
+    container().appendChild(probe);
+    const w = probe.firstElementChild ? probe.firstElementChild.getBoundingClientRect().width : 0;
+    probe.remove();
+    return w;
+  };
+
+  let offset = 0;   // position courante (partagée avec la boucle JS)
+  let halfWReady = false;
+
+  const build = (force) => {
+    const cw = container().clientWidth || window.innerWidth;
+    if (!force && cw === lastCW && track.children.length > 2) { syncLang(); return; }
+    const setW = measureSet();
+    if (setW < 40) { requestAnimationFrame(() => build(true)); return; } // mesure invalide → réessaie
+    lastCW = cw;
+    // assez de copies pour couvrir DEUX fois l'écran : marge large, jamais de vide
+    const perHalf = Math.max(2, Math.ceil(cw / setW) + 1);
+    track.innerHTML = unitHTML.repeat(perHalf * 2); // deux moitiés identiques → boucle invisible
+    syncLang();
+    halfW = setW * perHalf;
+    halfWReady = true;
+    offset = ((offset % halfW) + halfW) % halfW;
+    // fallback CSS : durée ∝ nombre de copies → vitesse constante
+    track.style.setProperty('--ticker-dur', (perHalf * 17) + 's');
+  };
+
+  build(true);
+  langListeners.push(() => build());
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => build(true));
+
+  let rz = 0;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(rz);
+    rz = requestAnimationFrame(() => build());
+  }, { passive: true });
+
+  if (reduceMotion) return; // la boucle CSS suffit
+
+  /* ---- prise en main JS : le ruban réagit à l'élan du scroll ---- */
+  track.style.animation = 'none';   // build() ne retouche plus `animation` → tient
+  const BASE = 46;       // px/s au repos
+  const BOOST = 640;     // px/s ajoutés à pleine vitesse
+  let speed = BASE, dir = 1, running = true, paused = false;
+  let last = performance.now();
+  let lastY = window.scrollY, fallbackVel = 0;
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    fallbackVel = y - lastY;
+    lastY = y;
+  }, { passive: true });
+
+  const band = track.parentElement;
+  // hover uniquement — `mouseenter` ne se déclenche pas sur un tap tactile
+  band.addEventListener('mouseenter', () => { paused = true; });
+  band.addEventListener('mouseleave', () => { paused = false; });
+
+  const loop = (now) => {
+    if (!running) return;
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+
+    const lv = (window.__lenis && typeof window.__lenis.velocity === 'number')
+      ? window.__lenis.velocity : fallbackVel;
+    const mag = Math.min(1, Math.abs(lv) / 55);
+    let target = paused ? 0 : BASE + BOOST * mag;
+    speed += (target - speed) * 0.06;
+    // sens normal = vers la gauche ; le scroll vers le haut l'inverse en douceur
+    const targetDir = lv < -3 ? -1 : 1;
+    dir += (targetDir - dir) * 0.05;
+
+    if (halfWReady && halfW > 0) {
+      offset = (((offset + speed * dt * dir) % halfW) + halfW) % halfW;
+      track.style.transform = `translateX(${(-offset).toFixed(2)}px)`;
+    }
+
+    fallbackVel *= 0.82;
+    requestAnimationFrame(loop);
+  };
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((e) => {
+      const vis = e[0].isIntersecting;
+      if (vis && !running) {
+        running = true; last = performance.now(); fallbackVel = 0;
+        requestAnimationFrame(loop);
+      } else {
+        running = vis;
+      }
+    }, { threshold: 0 }).observe(band);
+  }
+  requestAnimationFrame(loop);
 })();
 
 /* ─────────────────────────────────────────────

@@ -63,7 +63,9 @@
 
     <ul class="nav-links" id="navLinks">
       <li><a href="#soiree" data-i18n="nav_night">Soirée</a></li>
+      <!-- LINE-UP retiré 2026-08-31 (rollback : décommenter ce lien + la section #lineup plus bas)
       <li><a href="#lineup" data-i18n="nav_lineup">Line-up</a></li>
+      -->
       <li><a href="#infos" data-i18n="nav_info">Infos</a></li>
       <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
       <li><a class="btn btn--fill btn--sm" href="#billets" data-magnetic data-i18n="nav_tickets">Billets</a></li>
@@ -166,13 +168,13 @@
     <a class="btn btn--fill btn--lg btn--block" id="ticketBtn" href="#billets" data-ticket-link data-magnetic data-i18n="next_cta">Prendre un billet</a>
   </section>
 
-  <!-- ══ LINE-UP ══ -->
+  <!-- ══ LINE-UP ══  ·  section retirée 2026-08-31, conservée pour rollback (décommenter jusqu'à la ligne « FIN LINE-UP » + le lien nav)
   <section id="lineup" class="lineup reveal">
     <p class="kicker"><span>02</span> <span data-i18n="lineup_kicker">Line-up</span></p>
     <h2 class="section-title" data-split data-speed="-0.05" data-i18n="lineup_title">Deux artistes, <em>une nuit</em></h2>
 
     <div class="dj-list">
-      <!-- Azathø — source : DJ/azatho/ (description.txt + photos) -->
+      [ Azathø — source : DJ/azatho/ (description.txt + photos) ]
       <article class="dj" data-reveal>
         <div class="dj-photo">
           <img src="dj-azatho.jpg" alt="Azathø" width="1000" height="1250" loading="lazy" decoding="async" />
@@ -195,7 +197,7 @@
         </div>
       </article>
 
-      <!-- DJoJo (Johans Dos Santos) — source : DJ/djojo/ (press kit PDF) -->
+      [ DJoJo (Johans Dos Santos) — source : DJ/djojo/ (press kit PDF) ]
       <article class="dj" data-reveal>
         <div class="dj-photo">
           <img src="dj-djojo.jpg" alt="DJoJo — Johans Dos Santos" width="666" height="832" loading="lazy" decoding="async" />
@@ -220,10 +222,11 @@
       </article>
     </div>
   </section>
+  ══  FIN LINE-UP retirée  ·  rollback : décommenter ce bloc + le lien nav, puis renuméroter les kickers (infos 02→03, billets 03→04, faq 04→05)  ══ -->
 
   <!-- ══ INFOS ══ -->
   <section id="infos" class="infos reveal">
-    <p class="kicker"><span>03</span> <span data-i18n="info_kicker">Infos pratiques</span></p>
+    <p class="kicker"><span>02</span> <span data-i18n="info_kicker">Infos pratiques</span></p>
     <h2 class="section-title" data-split data-speed="-0.05" data-i18n="info_title">Tout ce qu'il <em>faut savoir</em></h2>
 
     <div class="info-grid">
@@ -249,7 +252,7 @@
 
       <div class="ticket-buy">
         <div class="ticket-card glass">
-          <p class="kicker"><span>04</span> <span data-i18n="tickets_kicker">Billets</span></p>
+          <p class="kicker"><span>03</span> <span data-i18n="tickets_kicker">Billets</span></p>
           <h2 class="section-title" data-split data-speed="-0.04" data-i18n="tickets_title">Entre dans le <em>CLUB 2000</em></h2>
 
           <ul class="tiers">
@@ -293,7 +296,7 @@
 
   <!-- ══ FAQ ══ -->
   <section id="faq" class="faq reveal">
-    <p class="kicker"><span>05</span> <span data-i18n="faq_kicker">FAQ</span></p>
+    <p class="kicker"><span>04</span> <span data-i18n="faq_kicker">FAQ</span></p>
     <h2 class="section-title" data-split data-speed="-0.05" data-i18n="faq_title">Questions <em>fréquentes</em></h2>
 
     <div class="faq-list" id="faqList">

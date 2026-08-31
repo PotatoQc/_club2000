@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap">
+  <style>
+    body { margin: 0; background: #04050e; color: #eaf0ff;
+      font-family: "Instrument Sans", system-ui, -apple-system, sans-serif; }
+    a { color: #5eb0ff; } a:hover { color: #eaf0ff; }
+    .flyer { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; }
+    .hero { position: absolute; top: 0; left: 0; width: 1080px; height: 1180px;
+      object-fit: cover; object-position: 50% 6%; }
+    .veil { position: absolute; inset: 0; background: linear-gradient(180deg,
+      rgba(4,5,14,0.55) 0%, rgba(4,5,14,0) 13%, rgba(4,5,14,0) 29%,
+      rgba(4,5,14,0.72) 51%, #04050e 67%, #04050e 100%); }
+    .glow { position: absolute; inset: 0; mix-blend-mode: screen;
+      background: radial-gradient(ellipse 70% 45% at 28% 3%, rgba(61,123,255,0.28), transparent 60%); }
+    .tex { position: absolute; inset: 0; pointer-events: none; }
+    .scan { background: repeating-linear-gradient(0deg, rgba(0,0,0,0.16) 0 1px, transparent 1px 3px); opacity: 0.5; }
+    .dots { background: radial-gradient(rgba(125,160,255,0.55) 1px, transparent 1.5px);
+      background-size: 13px 13px; opacity: 0.14;
+      -webkit-mask-image: radial-gradient(ellipse 60% 48% at 88% 95%, #000, transparent 70%);
+      mask-image: radial-gradient(ellipse 60% 48% at 88% 95%, #000, transparent 70%); }
+    .grain { opacity: 0.09; mix-blend-mode: overlay; background-size: 150px 150px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    .top { position: absolute; top: 70px; left: 84px; right: 84px;
+      display: flex; justify-content: space-between; align-items: flex-start; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 12px;
+      font-family: "Space Mono", ui-monospace, monospace; font-size: 19px;
+      letter-spacing: 0.18em; text-transform: uppercase; color: #c5cff0;
+      border: 1px solid rgba(125,160,255,0.28); border-radius: 999px;
+      padding: 12px 22px; background: rgba(4,5,14,0.35); }
+    .led { width: 9px; height: 9px; border-radius: 50%; background: #5eb0ff; box-shadow: 0 0 14px #5eb0ff; }
+    .numeral { font-family: "Chakra Petch", "Bahnschrift", "Arial Narrow", sans-serif;
+      font-weight: 700; font-size: 118px; line-height: 0.8; color: transparent;
+      -webkit-text-stroke: 1.5px rgba(234,240,255,0.4); }
+    .stack { position: absolute; left: 84px; right: 84px; bottom: 130px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
+    .role { margin: 0; font-family: "Space Mono", ui-monospace, monospace; font-size: 21px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #3d7bff; }
+    .name { margin: 0; font-family: "Chakra Petch", "Bahnschrift", "Arial Narrow", sans-serif;
+      font-weight: 700; font-size: 178px; line-height: 0.9; letter-spacing: -0.02em;
+      color: #eaf0ff; text-shadow: 0 6px 44px rgba(4,5,14,0.6); }
+    .rule { width: 100%; height: 1px; background: linear-gradient(90deg, #3d7bff, rgba(61,123,255,0)); }
+    .tags { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 12px; }
+    .tags li { font-family: "Space Mono", ui-monospace, monospace; font-size: 18px;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #c5cff0;
+      border: 1px solid rgba(125,160,255,0.26); border-radius: 999px; padding: 10px 20px; }
+    .bio { margin: 0; max-width: 830px; font-size: 29px; line-height: 1.5; color: #9aa4cf; text-wrap: pretty; }
+    .meta { width: 100%; margin-top: 12px; padding-top: 26px;
+      border-top: 1px solid rgba(125,160,255,0.2); display: flex; flex-direction: column; gap: 12px; }
+    .event { display: flex; align-items: baseline; gap: 22px;
+      font-family: "Chakra Petch", "Bahnschrift", sans-serif; font-weight: 600;
+      font-size: 44px; letter-spacing: 0.01em; color: #eaf0ff; }
+    .event .date { color: #3d7bff; }
+    .line { margin: 0; font-family: "Space Mono", ui-monospace, monospace; font-size: 20px;
+      letter-spacing: 0.09em; color: #b7c0e6; }
+    .line.dim { color: #7d88b8; }
+  </style>
+</helmet>
+<div class="flyer">
+  <img class="hero" src="djojo-hero.jpg" alt="DJoJo — Johans Dos Santos">
+  <div class="veil"></div>
+  <div class="glow"></div>
+  <div class="tex scan"></div>
+  <div class="tex dots"></div>
+  <div class="tex grain"></div>
+  <header class="top">
+    <span class="eyebrow"><span class="led"></span>CLUB 2000 · NUIT TECHNO</span>
+    <span class="numeral">02</span>
+  </header>
+  <div class="stack">
+    <p class="role">DJ / Producteur · Montpellier ⇄ Montréal</p>
+    <h1 class="name">DJOJO</h1>
+    <div class="rule"></div>
+    <ul class="tags">
+      <li>Hardgroove</li>
+      <li>Latin core</li>
+      <li>Hypnotique</li>
+    </ul>
+    <p class="bio">Racines brésiliennes, amour du groove — un son latin dansant, profond et percutant, du sud de la France à Montréal.</p>
+    <footer class="meta">
+      <div class="event"><span>Y2K RAVE</span><span class="date">12.09.26</span></div>
+      <p class="line">2037 rue Saint-Denis, Montréal — Quartier latin</p>
+      <p class="line">Portes 22 h — 04 h · 18 + · présenté par CLUB 2000</p>
+      <p class="line dim">Sets récents — IleSoniq · 212 Club · Shameless MTP · BoumBoum</p>
+    </footer>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

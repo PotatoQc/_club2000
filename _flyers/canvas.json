@@ -1,0 +1,12 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1080, "h": 1920, "title": "Azatho - portrait" },
+    { "file": "Djojo.dc.html", "x": 1240, "y": 0, "w": 1080, "h": 1920, "title": "DJoJo - portrait" },
+    { "file": "AzathoLive.dc.html", "x": 0, "y": 2160, "w": 1080, "h": 1920, "title": "Azatho - en set" },
+    { "file": "DjojoLive.dc.html", "x": 1240, "y": 2160, "w": 1080, "h": 1920, "title": "DJoJo - en set" }
+  ],
+  "annotations": [
+    { "id": "note-format", "x": -430, "y": 0, "w": 330, "text": "Format 1080 x 1920 (Reel / Story 9:16).\n\nRangee du haut : flyer portrait.\nRangee du bas : variante en set.\n\nExport PNG par artboard depuis la barre d'outils. Les polices Google (Chakra Petch) sont remplacees par une police de secours a l'export - le rendu a l'ecran reste fidele." }
+  ],
+  "launch": { "view": "canvas" }
+}

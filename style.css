@@ -6,8 +6,8 @@
 
 /* ---------- Tokens ---------- */
 :root {
-  --ink:        #05081f;
-  --ink-2:      #0a0f30;
+  --ink:        #04050e;
+  --ink-2:      #090d24;
   --panel:      rgba(255, 255, 255, 0.03);
   --panel-line: rgba(125, 160, 255, 0.14);
   --panel-line-soft: rgba(125, 160, 255, 0.07);
@@ -97,48 +97,48 @@ html { scrollbar-color: var(--volt) var(--ink-2); scrollbar-width: thin; }
 }
 
 /* ============================================================
-   AMBIANCE — fond composite inspiré de l'affiche AFTER HOURS :
-   dégradé de profondeur · nappes de couleur · trame filaire ·
-   demi-teinte (dots) · scanlines · grain · lettrage fantôme.
-   Tout est composé/statique — seules les nappes dérivent.
+   AMBIANCE — atmosphère vivante. Une nappe de brume bleue qui
+   dérive (canvas `#bgHaze`, bruit fractal déformé rendu en basse
+   résolution puis flouté — piloté par bgHaze() dans main.js) posée
+   sur un fond quasi noir, surmontée des couches d'impression :
+   trame filaire · demi-teinte · scanlines · grain · lettrage
+   fantôme. Inspiré du canvas « courant d'encre » de
+   santionispirits.com. Dégénère proprement : sans JS le dégradé
+   statique suffit ; en mouvement réduit le canvas se fige.
    ============================================================ */
 .bg { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
 .bg > * { position: absolute; inset: 0; }
 
-/* 1 — dégradé de base : jamais un aplat, un halo froid en haut + un fond qui
-   se creuse vers le bas */
+/* 1 — socle : jamais un aplat. Halo froid en haut, la salle qui
+   se creuse et s'assombrit vers les bords. */
 .bg-grad {
   background:
-    radial-gradient(72% 46% at 50% -8%, rgba(61,110,255,0.16), transparent 70%),
-    radial-gradient(50% 40% at 100% 108%, rgba(94,176,255,0.10), transparent 72%),
-    radial-gradient(40% 34% at -8% 60%, rgba(90,107,255,0.10), transparent 70%),
-    linear-gradient(180deg, var(--ink-2) 0%, var(--ink) 42%, #04061a 100%);
+    radial-gradient(78% 48% at 50% -16%, rgba(58,104,240,0.09), transparent 64%),
+    radial-gradient(65% 50% at 50% 122%, rgba(6,9,26,0.9), transparent 70%),
+    radial-gradient(122% 94% at 50% 44%, transparent 42%, rgba(2,3,8,0.82) 100%),
+    linear-gradient(180deg, #080c20 0%, #04060d 48%, #020207 100%);
 }
 
-/* 2 — nappes de couleur floues (gradient mesh) */
-.blob {
-  width: 58vw; height: 58vw; border-radius: 50%;
-  filter: blur(70px); opacity: 0.16; mix-blend-mode: screen;
-  inset: auto;
+/* 2 — brume vivante (canvas basse résolution, étirée + floutée).
+   `screen` : seules les crêtes bleues ressortent du socle noir,
+   les creux restent invisibles → effet « courant d'encre ». */
+.bg-haze {
+  display: block;
+  width: 100%; height: 100%;
+  opacity: 0.72;
+  mix-blend-mode: screen;
+  filter: blur(22px) saturate(1.2) contrast(1.08);
+  transform: scale(1.16); /* repousse hors champ les bords floutés */
+  transition: opacity 1.2s ease;
 }
-.blob--a { top: -24vw; left: -18vw; background: radial-gradient(circle, var(--volt), transparent 70%); animation: drift 34s var(--ease) infinite; }
-.blob--b { bottom: -26vw; right: -18vw; background: radial-gradient(circle, var(--cyan), transparent 68%); animation: drift 42s var(--ease) infinite reverse; }
-.blob--c {
-  top: 32%; left: 44%; width: 48vw; height: 48vw; opacity: 0.1;
-  background: conic-gradient(from 210deg, #1c2b6e, #3d5cff, #9fb6ff, #232f6e, #5e7bff, #1c2b6e);
-  animation: drift 58s var(--ease) infinite;
-}
-@keyframes drift {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50%      { transform: translate3d(4vw, 3vw, 0); }
-}
+.bg-haze.is-frozen { opacity: 0.6; }
 
 /* 3 — trame filaire triangulaire, en écusson (haut-droite + bas-gauche) */
 .bg-mesh {
   background-image:
-    repeating-linear-gradient(0deg,   rgba(125,160,255,0.06) 0 1px, transparent 1px 44px),
-    repeating-linear-gradient(60deg,  rgba(125,160,255,0.05) 0 1px, transparent 1px 44px),
-    repeating-linear-gradient(-60deg, rgba(125,160,255,0.05) 0 1px, transparent 1px 44px);
+    repeating-linear-gradient(0deg,   rgba(125,160,255,0.035) 0 1px, transparent 1px 46px),
+    repeating-linear-gradient(60deg,  rgba(125,160,255,0.03) 0 1px, transparent 1px 46px),
+    repeating-linear-gradient(-60deg, rgba(125,160,255,0.03) 0 1px, transparent 1px 46px);
   -webkit-mask-image:
     radial-gradient(60% 45% at 92% 8%, #000, transparent 72%),
     radial-gradient(55% 40% at 6% 96%, #000, transparent 72%);
@@ -161,7 +161,7 @@ html { scrollbar-color: var(--volt) var(--ink-2); scrollbar-width: thin; }
   opacity: 0.4;
 }
 .grain {
-  opacity: 0.5; mix-blend-mode: overlay;
+  opacity: 0.58; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
 }
 
@@ -858,7 +858,7 @@ footer {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .blob { animation: none; }
+  .bg-haze { opacity: 0.5; filter: blur(24px) saturate(1.1); }
   .chrome, .next-date { animation: none; background-position: 50% 30%; }
   .ticker-track { animation: none; }
   .eq i { animation: none; transform: scaleY(0.6); }

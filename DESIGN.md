@@ -23,18 +23,16 @@ are untouched.
 
 | Token | Value | Use |
 |---|---|---|
-| `--ink` / `--ink-2` | `#05081f` / `#0a0f30` | deep navy-black ground (was near-pure-black; nudged blue to match the poster) |
+| `--ink` / `--ink-2` | `#04050e` / `#090d24` | near-black ground. Darkened 2026-08-30 with the living-haze rework ("darker & smokier" per the client) — blue now reads as a cold tint on the moving haze, not a fill. Was `#05081f` / `#0a0f30`. |
 | `--text` / `--text-dim` | `#eaf0ff` / `#838fc6` | copy; dim is blue-tinted, never gray |
 | `--volt` | `#3d7bff` | the one signal spark — CTA, kicker badge, ONE word per title, hairlines. Electric cobalt. **Was `--pink` `#ff2ea6`; renamed + revalued in the poster re-key.** Used sparingly. |
 | `--cyan` | `#5eb0ff` | secondary accent, focus ring, LED (bright azure) |
-| `--violet` | `#5a6bff` | third light only (blobs, scrollbar) — now a blue indigo |
+| `--violet` | `#5a6bff` | third light only (scroll bar, scrollbar thumb) — a blue indigo |
 | `--chrome` | blue-tinted steel gradient | liquid-metal wordmark + footer mark |
 | `--holo` | electric-blue chrome gradient | the big date; echoes the poster's blue "marble" panel |
 | `--r-sm/md/pill` | 10 / 18 / 999px | radius scale |
 
-Blobs run at `opacity 0.10–0.16` (haze, not glow), all blue — correct for the
-monochrome poster. See **Composite background** under Materials for the full
-layer stack.
+See **Living haze** under Materials for the full background layer stack.
 
 ## Type
 
@@ -56,21 +54,31 @@ layer stack.
   1px cool border, inner top highlight. Info cards, ticket card.
 - **Holo sheen** — `--holo` at low opacity with `mix-blend-mode: color-dodge`,
   intensifies + shifts position on hover (edition tiles).
-- **Composite background** (`.bg`, re-worked 2026-08-30 — the flat blue mesh
-  "read as AI"). Stacked, mostly static layers keyed to the AFTER HOURS flyer:
-  1. `.bg-grad` — a depth gradient (cool halo top, darkening to `#04061a` bottom);
-     never a flat fill.
-  2. 3 blurred colour fields — `.blob--a/b` (volt / azure radial), `.blob--c` (a
-     **conic** gradient = liquid-chrome shimmer), `mix-blend: screen`, slow
-     translate `drift`.
-  3. `.bg-mesh` — faint triangular wireframe, masked to two corner patches.
+- **Living haze** (`.bg`, rebuilt 2026-08-30 — the previous composite "read as
+  AI / too simple", client wanted the background to *feel alive*; reference:
+  santionispirits.com's flowing ink-current canvas). The room's air moving under
+  a sound system. Layers, bottom to top:
+  1. `.bg-grad` — static depth gradient: cool halo top, the room darkening and
+     vignetting to `#020207` at the edges. Never a flat fill.
+  2. `canvas#bgHaze` — **the live layer.** `bgHaze()` in `main.js` renders
+     domain-warped fractal noise (hand-rolled fbm, no library) into a tiny
+     backing store (≤ 190×140 px), CSS-stretched to the viewport and blurred
+     `22px`; `mix-blend: screen` so only the blue crests lift off the black
+     ground and drift — troughs stay invisible. Slow horizontal flow + a ~15s
+     breathing swell. ~30fps. Colour ramp near-black → cobalt.
+  3. `.bg-mesh` — barely-there triangular wireframe, masked to two corner
+     patches (a faint flyer echo; dialled down in this rework).
   4. `.bg-dots` — screen-print halftone dot field, radially masked dense at
      lower-left (the flyer's dot wave).
-  5. `.scanlines` + a stronger fine `.grain` (kills the "too clean" look).
-  6. `.bg-mark` — a huge ghost wordmark ("CLUB 2000 · TECHNO THROWBACK · AFTER
-     HOURS · 12.09.26") down the right edge, outlined at ~7% — the flyer's stacked
-     type. Hidden ≤ 1180px.
-  Measured ~10 ms/frame — the extra layers are compositor-cheap.
+  5. `.scanlines` + a strong fine `.grain` (overlay, ~0.58) — kills the "too
+     clean" look, per the Santioni lesson.
+  6. `.bg-mark` — a huge ghost wordmark down the right edge, outlined at ~7%.
+     Hidden ≤ 1180px.
+  **Budget:** backing store scales with viewport (≈ 9–13k px), a few ms/frame.
+  `bgHaze()` times its first 80 rendered frames; if the mean render cost is too
+  high it freezes on the last frame (`.is-frozen`, opacity drops) — a weak phone
+  gets a static smoky texture, never a stuttering loop. Pauses on tab-hide.
+  Verified: freezes under 6× CPU throttle, animates clean at 1×.
 
 ## Motion (all gated by `prefers-reduced-motion`)
 
@@ -86,7 +94,7 @@ layer stack.
 | Section titles | `[data-split]` — JS word-wrap, each word rises from an `overflow:hidden` mask, 55ms stagger, fires at 40% in view |
 | Sections / DJ cards | `.reveal`→`.in` and `[data-reveal]`→`.shown`, translate/fade stagger. The DJ **main** photo also clip-wipes open (`clip-path: inset(0 0 100% 0)` → `0`) with the inner image easing from `scale(1.14)`; the 3:2 secondary shot rides the card fade only; info cards stagger 80ms. |
 | Parallax | `[data-speed]` on the big date + the four section titles (`-0.04/-0.05`); **lerped** (0.085) toward a viewport-relative target, clamped ±160px. Independent `translate` property, composes with the reveal `transform`. |
-| Background blobs | 3 blurred colour fields (`blur 70px`), slow translate-only `drift` (a/b radial, c conic); mesh/dots/scanlines/grain/mark are static |
+| Background haze | `canvas#bgHaze` — domain-warped fbm noise, ~30fps, slow horizontal flow + breathing swell, `screen`-blended over the near-black grad. Self-freezes on weak devices; one static frame under reduced-motion. Mesh/dots/scanlines/grain/mark are static. (Replaced the 3 CSS `.blob`s + `drift`.) Reference: santionispirits.com. |
 | Reveals | translateY(32–56px) + slight `scale`, 0.7–0.9s exponential ease, nth-child stagger. No blur. |
 | Cursor | native system cursor. A custom cursor was tried and **removed** — repeated "invisible mouse" bugs. Do not reintroduce. |
 | Techno signals | hero eyebrow "NUIT TECHNO"; animated CSS equalizer (`.eq`, `scaleY`); "130-142 BPM · mur de son" tag |
@@ -103,7 +111,7 @@ every section. Scroll is back to ~9 ms/frame.
 | Countdown | digits `tick` (slide + deblur) on change; seconds never animate |
 | Buttons | diagonal `sheen` sweep on hover |
 
-Reduced-motion: intro skipped, blobs static, chrome frozen mid-gradient, all
+Reduced-motion: intro skipped, background haze renders one static frame, chrome frozen mid-gradient, all
 reveals shown, ticker on the plain CSS loop, nav never retracts, hero scroll-out
 and DJ-photo clip disabled, scroll bar updates on `scroll` without a loop.
 

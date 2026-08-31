@@ -811,6 +811,128 @@ function applyLang(lang) {
 })();
 
 /* ─────────────────────────────────────────────
+   BRUME VIVANTE — nappe de bruit fractal déformé (fbm +
+   déformation de domaine) rendue dans un <canvas> minuscule,
+   puis étirée et floutée en CSS. On veut sentir l'air d'un
+   sous-sol qui bouge sous le système son. Inspiré du canvas
+   « courant d'encre » de santionispirits.com.
+     • ~30 ips, backing store ≤ 190×140 px (le flou masque tout)
+     • surveille son coût sur les 80 premières images rendues :
+       si l'appareil ne suit pas, gèle sur la dernière (reste
+       une texture crédible plutôt qu'un fond mort)
+     • onglet caché : pause. Mouvement réduit : une seule image.
+     • sans JS : le dégradé `.bg-grad` suffit.
+   ───────────────────────────────────────────── */
+(function bgHaze() {
+  const cv = document.getElementById('bgHaze');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  if (!ctx) return;
+
+  let W = 0, H = 0, img = null, buf = null;
+  const resize = () => {
+    const long = Math.max(window.innerWidth, window.innerHeight);
+    const w = Math.round(Math.min(190, Math.max(70, long / 9)));
+    const h = Math.min(140, Math.round(w * (window.innerHeight / Math.max(1, window.innerWidth))));
+    if (w === W && h === H) return;
+    W = w; H = h; cv.width = W; cv.height = H;
+    img = ctx.createImageData(W, H);
+    buf = img.data;
+  };
+  resize();
+
+  /* bruit de valeur + fbm — hash entier, sans table mémoire */
+  const hash = (x, y) => {
+    let h = (x * 374761393 + y * 668265263) | 0;
+    h = Math.imul(h ^ (h >>> 13), 1274126177);
+    return ((h ^ (h >>> 16)) >>> 0) / 4294967295;
+  };
+  const smooth = (t) => t * t * (3 - 2 * t);
+  const vnoise = (x, y) => {
+    const xi = Math.floor(x), yi = Math.floor(y);
+    const u = smooth(x - xi), v = smooth(y - yi);
+    const a = hash(xi, yi), b = hash(xi + 1, yi);
+    const c = hash(xi, yi + 1), d = hash(xi + 1, yi + 1);
+    return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
+  };
+  const fbm = (x, y) => {
+    let f = 0, amp = 0.5, freq = 1;
+    for (let o = 0; o < 3; o++) { f += amp * vnoise(x * freq, y * freq); freq *= 2.03; amp *= 0.5; }
+    return f;
+  };
+
+  const LO = [4, 6, 14], MID = [15, 32, 82], HI = [96, 142, 232];
+
+  const render = (t) => {
+    const flow = t * 0.000022;                        // dérive lente des courants
+    const swell = 0.88 + 0.12 * Math.sin(t * 0.00042); // respiration très lente
+    let i = 0;
+    for (let y = 0; y < H; y++) {
+      const ny = y / H;
+      const vgrad = 1 - Math.pow(Math.abs(ny - 0.44) * 2, 1.7) * 0.52; // assombrit haut/bas
+      for (let x = 0; x < W; x++) {
+        const nx = x / W;
+        const wx = fbm(nx * 2.6 + flow, ny * 2.6 + 11.3);
+        const wy = fbm(nx * 2.6 + 5.1, ny * 2.6 - flow * 0.6 + 7.7);
+        let n = fbm(nx * 2.7 + wx * 2.3 + flow, ny * 2.0 + wy * 2.3);
+        n = (n - 0.46) * 2.7;
+        n = n < 0 ? 0 : n > 1 ? 1 : n;
+        n = n * n * (3 - 2 * n);
+        const k = n * vgrad * swell;
+        let r, g, b;
+        if (k < 0.5) { const s = k * 2; r = LO[0] + (MID[0] - LO[0]) * s; g = LO[1] + (MID[1] - LO[1]) * s; b = LO[2] + (MID[2] - LO[2]) * s; }
+        else { const s = (k - 0.5) * 2; r = MID[0] + (HI[0] - MID[0]) * s; g = MID[1] + (HI[1] - MID[1]) * s; b = MID[2] + (HI[2] - MID[2]) * s; }
+        buf[i++] = r; buf[i++] = g; buf[i++] = b; buf[i++] = 255;
+      }
+    }
+    ctx.putImageData(img, 0, 0);
+  };
+
+  let raf = 0, last = 0, acc = 0, t0 = performance.now();
+  let samples = 0, costSum = 0, frozen = false, paused = false, rt = 0;
+  const FRAME = 1000 / 30;
+
+  const freeze = () => {
+    if (frozen) return;
+    frozen = true;
+    cancelAnimationFrame(raf);
+    cv.classList.add('is-frozen');
+  };
+
+  const loop = (now) => {
+    raf = requestAnimationFrame(loop);
+    if (paused) { last = now; return; }
+    acc += Math.min(now - last, 100);
+    last = now;
+    if (acc < FRAME) return;
+    acc = 0;
+    const a = performance.now();
+    render(now - t0);
+    if (samples < 80) {
+      samples++; costSum += performance.now() - a;
+      if (samples === 80 && costSum / 80 > 12) freeze();
+    }
+  };
+
+  const start = () => {
+    if (frozen) return;
+    last = performance.now();
+    raf = requestAnimationFrame(loop);
+  };
+
+  window.addEventListener('resize', () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => { resize(); if (frozen || paused) render(performance.now() - t0); }, 200);
+  }, { passive: true });
+  document.addEventListener('visibilitychange', () => { paused = document.hidden; });
+
+  render(0); // une image tout de suite — jamais de trou noir
+  if (reduceMotion) return;
+  if (document.getElementById('intro')) document.addEventListener('club2000:ready', start, { once: true });
+  else start();
+})();
+
+/* ─────────────────────────────────────────────
    ANNÉE
    ───────────────────────────────────────────── */
 (function year() {

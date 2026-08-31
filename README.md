@@ -29,14 +29,16 @@ gracefully if unreachable; without the widget script the ticket area is empty.
 Deep-navy Y2K-revival techno, keyed to the **AFTER HOURS flyer** (`after-hours.jpg`):
 liquid-chrome wordmark, electric-blue accents, one cobalt signal colour used
 sparingly, a dark-filtered background video, animated equalizer. Fully monochrome
-blue — no pink/warmth. The post-hero background is a composite (`.bg` in
-`style.css`): depth gradient + 3 blurred colour fields + wireframe mesh +
-halftone dots + scanlines + grain + a ghost wordmark down the right edge.
-Tokens live in `style.css` under `/* Tokens */`.
+blue — no pink/warmth. The post-hero background is a **living haze** (`.bg` in
+`style.css`, `bgHaze()` in `main.js`): a low-res `<canvas>` of slow-flowing blue
+fog (hand-rolled fractal noise, no library) over a near-black depth gradient,
+blurred and `screen`-blended, ~30fps, self-freezing on weak devices — then
+wireframe mesh + halftone dots + scanlines + grain + a ghost wordmark down the
+right edge. Inspired by santionispirits.com. Tokens live under `/* Tokens */`.
 
 | Token | Value |
 |---|---|
-| `--ink` | `#05081f` |
+| `--ink` | `#04050e` |
 | `--volt` | `#3d7bff` (signal only; was `--pink`) |
 | `--cyan` | `#5eb0ff` |
 | Display / body / data fonts | Chakra Petch / Instrument Sans / Space Mono |

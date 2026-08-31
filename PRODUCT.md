@@ -62,8 +62,14 @@ ticket holders by email the day before.
 - Countdown is driven by a single ISO date in `main.js` and self-updates; past
   the date it switches to a "c'est ce soir" state.
 - FAQ is native `<details>`; only one answer open at a time.
-- Ambient motion (starfield, perspective grid, cursor glow, scroll reveals) must
-  fully stop under `prefers-reduced-motion`.
+- Ambient motion (living background haze, scroll reveals, ticker, parallax) must
+  fully stop — or drop to a static frame — under `prefers-reduced-motion`.
+- **Background** (rebuilt 2026-08-30): the old composite "read as AI / too
+  simple". It is now a living haze — a low-res `<canvas>` (`#bgHaze`,
+  `bgHaze()` in `main.js`) rendering slow-flowing blue fog over a darkened
+  near-black ground, blurred and `screen`-blended, ~30fps, with a cost watchdog
+  that freezes it on weak devices. Reference: santionispirits.com. Keep it
+  buildless (hand-rolled noise, no library) and cheap. See DESIGN.md § Materials.
 - Current event is titled **Y2K RAVE**, presented by CLUB 2000. Confirmed:
   Saturday 12 September 2026, 22 h–04 h (six hours), at 2037 rue Saint-Denis,
   Montréal (Quartier latin, métro Sherbrooke).

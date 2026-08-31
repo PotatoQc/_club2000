@@ -119,14 +119,23 @@ ticket holders by email the day before.
 - Techno-event cues in the hero: "NUIT TECHNO" eyebrow, an animated equalizer,
   and a "Techno — 130-142 BPM — mur de son" tag. **The BPM range is genre-generic,
   not a confirmed setlist fact** — adjust or drop if it should be specific.
-- Hero **background video**: `club-hero.mp4` (2.8 MB, 1152×648, 24 fps, no audio,
-  faststart) + `club-hero.jpg` poster (15 KB), both generated from the user's
-  `test.mp4` (62 MB source — **safe to delete**). Wired via `data-src-mp4` /
-  `data-poster` on `#heroVideo`. Plays muted/looped behind the wordmark under a
-  dark filter (grayscale + brightness + vignette + bottom fade); pauses when the
-  hero scrolls out of view or the tab is hidden; off under `prefers-reduced-motion`.
-  To swap the video, re-encode to the same filename. Clearing `data-src-mp4`
-  reverts to the gradient background with zero errors.
+- Hero **background video**: `club-hero.mp4` (2.3 MB, 900×506, 24 fps, no audio,
+  keyframe every 3 s, faststart) + `club-hero.jpg` poster (7 KB). Wired via
+  `data-src-mp4` / `data-poster` on `#heroVideo`. Plays muted/looped behind the
+  wordmark; pauses when the hero scrolls out of view or the tab is hidden; off
+  under `prefers-reduced-motion`; **skipped on Save-Data / 2G** (poster only).
+  Clearing `data-src-mp4` reverts to the gradient background with zero errors.
+  - **Reworked 2026-08-30 (user: "la vidéo coupe beaucoup").** The dark treatment
+    (desaturate + darken + contrast) is now **baked into the file** — there is no
+    runtime CSS `filter:` on the video, because a full-viewport filter on a
+    playing video is recomposited every frame and stutters modest GPUs. The
+    living-haze canvas is also idle whenever the hero covers the screen (it is
+    invisible there anyway). Verified 24 fps / 0 dropped at 1× and holding under
+    4× CPU throttle. **To swap the video: re-apply the treatment at encode time**
+    — `ffmpeg -i in.mp4 -vf
+    "hue=s=0.5,colorlevels=romax=0.62:gomax=0.62:bomax=0.62,eq=contrast=1.12,scale=900:-2"
+    -an -r 24 -g 72 -sc_threshold 0 -crf 26 -movflags +faststart club-hero.mp4` —
+    or restore a `filter:` on `.hero-video video`.
 - **The site is bilingual FR / EN** with a toggle in the nav. FR is the default;
   first visit follows the browser language; the choice persists in localStorage
   (`club2000:lang`). Every visible string has a key in `I18N` (main.js) — new

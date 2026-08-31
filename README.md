@@ -82,9 +82,19 @@ the HTML — `applyLang()` overwrites the HTML on load. Look for `data-i18n` in
 
 ### 4. Hero background video
 
-`club-hero.mp4` is set via `data-src-mp4` on `#heroVideo`. To swap it, re-encode
-to the same filename (H.264, ~1150 px wide, no audio, `+faststart`, under ~5 MB)
-and refresh `club-hero.jpg` as the poster frame.
+`club-hero.mp4` (900 px, H.264, no audio) is set via `data-src-mp4` on
+`#heroVideo`. The dark look is **baked into the file** — there is no CSS
+`filter:` on the video (it stutters weak GPUs). To swap it, re-encode to the
+same filename *with the treatment re-applied*:
+
+```
+ffmpeg -i new.mp4 -vf "hue=s=0.5,colorlevels=romax=0.62:gomax=0.62:bomax=0.62,eq=contrast=1.12,scale=900:-2" \
+  -an -r 24 -g 72 -sc_threshold 0 -crf 26 -preset slow -movflags +faststart club-hero.mp4
+```
+
+Then refresh `club-hero.jpg` (a mid-clip frame) as the poster. The video is
+skipped entirely on Save-Data / 2G connections and while `prefers-reduced-motion`
+is set — the poster and gradient stand in.
 
 ## Notes
 

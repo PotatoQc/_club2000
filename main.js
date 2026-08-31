@@ -660,6 +660,13 @@ function applyLang(lang) {
   if (!mp4 && !webm) return; // pas de vidéo configurée
 
   if (v.dataset.poster) v.poster = v.dataset.poster;
+
+  // connexion lente / économie de données → on s'en tient au poster
+  const conn = navigator.connection;
+  if (conn && (conn.saveData || /(^|\b)(slow-2g|2g)$/.test(conn.effectiveType || ''))) {
+    v.removeAttribute('autoplay');
+    return;
+  }
   const add = (src, type) => { const s = document.createElement('source'); s.src = src; s.type = type; v.appendChild(s); };
   if (webm) add(webm, 'video/webm');
   if (mp4) add(mp4, 'video/mp4');
@@ -832,8 +839,8 @@ function applyLang(lang) {
   let W = 0, H = 0, img = null, buf = null;
   const resize = () => {
     const long = Math.max(window.innerWidth, window.innerHeight);
-    const w = Math.round(Math.min(190, Math.max(70, long / 9)));
-    const h = Math.min(140, Math.round(w * (window.innerHeight / Math.max(1, window.innerWidth))));
+    const w = Math.round(Math.min(160, Math.max(64, long / 10)));
+    const h = Math.min(120, Math.round(w * (window.innerHeight / Math.max(1, window.innerWidth))));
     if (w === W && h === H) return;
     W = w; H = h; cv.width = W; cv.height = H;
     img = ctx.createImageData(W, H);
@@ -889,8 +896,11 @@ function applyLang(lang) {
   };
 
   let raf = 0, last = 0, acc = 0, t0 = performance.now();
-  let samples = 0, costSum = 0, frozen = false, paused = false, rt = 0;
-  const FRAME = 1000 / 30;
+  let samples = 0, costSum = 0, frozen = false, paused = false, covered = true, rt = 0;
+  const FRAME = 1000 / 24;
+  // au repos tant que : onglet caché · survol du ruban · le hero couvre l'écran
+  // (la brume est invisible derrière la vidéo — inutile de lui voler du CPU)
+  const idle = () => paused || covered || document.hidden;
 
   const freeze = () => {
     if (frozen) return;
@@ -901,28 +911,38 @@ function applyLang(lang) {
 
   const loop = (now) => {
     raf = requestAnimationFrame(loop);
-    if (paused) { last = now; return; }
+    if (idle()) { last = now; acc = 0; return; }
     acc += Math.min(now - last, 100);
     last = now;
     if (acc < FRAME) return;
     acc = 0;
     const a = performance.now();
     render(now - t0);
-    if (samples < 80) {
+    if (samples < 60) {
       samples++; costSum += performance.now() - a;
-      if (samples === 80 && costSum / 80 > 12) freeze();
+      if (samples === 60 && costSum / 60 > 10) freeze();
     }
   };
 
   const start = () => {
-    if (frozen) return;
+    if (frozen || raf) return;
     last = performance.now();
     raf = requestAnimationFrame(loop);
   };
 
+  // le hero (#top) couvre le fond ⇒ on ne calcule rien tant qu'il est visible
+  const hero = document.getElementById('top');
+  if (hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver((e) => {
+      covered = e[0].isIntersecting && e[0].intersectionRatio > 0.2;
+    }, { threshold: [0, 0.2, 0.5, 1] }).observe(hero);
+  } else {
+    covered = false;
+  }
+
   window.addEventListener('resize', () => {
     clearTimeout(rt);
-    rt = setTimeout(() => { resize(); if (frozen || paused) render(performance.now() - t0); }, 200);
+    rt = setTimeout(() => { resize(); if (idle() || frozen) render(performance.now() - t0); }, 200);
   }, { passive: true });
   document.addEventListener('visibilitychange', () => { paused = document.hidden; });
 

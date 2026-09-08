@@ -63,9 +63,7 @@
 
     <ul class="nav-links" id="navLinks">
       <li><a href="#soiree" data-i18n="nav_night">Soirée</a></li>
-      <!-- LINE-UP retiré 2026-08-31 (rollback : décommenter ce lien + la section #lineup plus bas)
       <li><a href="#lineup" data-i18n="nav_lineup">Line-up</a></li>
-      -->
       <li><a href="#infos" data-i18n="nav_info">Infos</a></li>
       <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
       <li><a class="btn btn--fill btn--sm" href="#billets" data-magnetic data-i18n="nav_tickets">Billets</a></li>
@@ -168,65 +166,56 @@
     <a class="btn btn--fill btn--lg btn--block" id="ticketBtn" href="#billets" data-ticket-link data-magnetic data-i18n="next_cta">Prendre un billet</a>
   </section>
 
-  <!-- ══ LINE-UP ══  ·  section retirée 2026-08-31, conservée pour rollback (décommenter jusqu'à la ligne « FIN LINE-UP » + le lien nav)
+  <!-- ══ LINE-UP ══
+       3 flyers fournis par le client (source : ratchet.png / djodjo.png / vince.png, gitignorés),
+       versions web : flyer-vince.jpg / flyer-djojo.jpg / flyer-ratchet.jpg.
+       Ancienne section 2-DJ (Azathø + DJoJo profils) : voir l'historique git avant le 2026-09-08. -->
   <section id="lineup" class="lineup reveal">
     <p class="kicker"><span>02</span> <span data-i18n="lineup_kicker">Line-up</span></p>
-    <h2 class="section-title" data-split data-speed="-0.05" data-i18n="lineup_title">Deux artistes, <em>une nuit</em></h2>
+    <h2 class="section-title" data-split data-speed="-0.05" data-i18n="lineup_title">Trois artistes, <em>une nuit</em></h2>
+    <p class="lineup-note" data-i18n="lineup_note">Trois sets qui s'enchaînent, de l'ouverture à la fermeture.</p>
 
-    <div class="dj-list">
-      [ Azathø — source : DJ/azatho/ (description.txt + photos) ]
-      <article class="dj" data-reveal>
-        <div class="dj-photo">
-          <img src="dj-azatho.jpg" alt="Azathø" width="1000" height="1250" loading="lazy" decoding="async" />
-          <span class="dj-index" aria-hidden="true">01</span>
-        </div>
-        <div class="dj-body">
-          <p class="dj-role" data-i18n="dj1_role">DJ · Montréal</p>
-          <h3 class="dj-name">Azathø</h3>
-          <ul class="dj-tags">
-            <li data-i18n="dj1_tag1">Hard techno</li>
-            <li data-i18n="dj1_tag2">Groove hypnotique</li>
-          </ul>
-          <p class="dj-bio" data-i18n="dj1_bio">Azathø navigue entre la puissance brute de la hard techno et l’énergie hypnotique du groove. Ses sets enchaînent rythmes percutants, basses lourdes et transitions rapides, avec une seule intention : créer de l’énergie et garder le plancher en mouvement.</p>
-          <div class="dj-shot"><img src="dj-azatho-live.jpg" alt="Azathø" width="960" height="640" loading="lazy" decoding="async" /></div>
-          <p class="dj-lab" data-i18n="listen">À écouter</p>
-          <ul class="dj-links">
-            <li><a href="https://on.soundcloud.com/KPeZy4rLyihnXblZi5" target="_blank" rel="noopener">SoundCloud</a></li>
-            <li><a href="https://fr.ra.co/dj/azatho" target="_blank" rel="noopener">Resident Advisor</a></li>
-          </ul>
-        </div>
-      </article>
+    <p class="lineup-order-lab" data-i18n="lineup_order_lab">Ordre de passage</p>
+    <ol class="run-order">
+      <li class="slot" data-reveal>
+        <span class="slot-num" aria-hidden="true">01</span>
+        <span class="slot-name">Vince</span>
+        <span class="slot-time" data-i18n="lineup_time_vince">22 h – 23 h 30</span>
+      </li>
+      <li class="slot" data-reveal>
+        <span class="slot-num" aria-hidden="true">02</span>
+        <span class="slot-name">DJoJo</span>
+        <span class="slot-time" data-i18n="lineup_time_djojo">23 h 30 – 01 h 30</span>
+      </li>
+      <li class="slot" data-reveal>
+        <span class="slot-num" aria-hidden="true">03</span>
+        <span class="slot-name">Ratchet</span>
+        <span class="slot-time" data-i18n="lineup_time_ratchet">01 h 30 – 03 h</span>
+      </li>
+    </ol>
 
-      [ DJoJo (Johans Dos Santos) — source : DJ/djojo/ (press kit PDF) ]
-      <article class="dj" data-reveal>
-        <div class="dj-photo">
-          <img src="dj-djojo.jpg" alt="DJoJo — Johans Dos Santos" width="666" height="832" loading="lazy" decoding="async" />
-          <span class="dj-index" aria-hidden="true">02</span>
-        </div>
-        <div class="dj-body">
-          <p class="dj-role" data-i18n="dj2_role">DJ / Producteur · Montpellier ⇄ Montréal</p>
-          <h3 class="dj-name">DJoJo</h3>
-          <ul class="dj-tags">
-            <li data-i18n="dj2_tag1">Hardgroove</li>
-            <li data-i18n="dj2_tag2">Latin core</li>
-            <li data-i18n="dj2_tag3">Hypnotique</li>
-          </ul>
-          <p class="dj-bio" data-i18n="dj2_bio">Natif du sud de la France, Johans « DJoJo » Dos Santos baigne depuis toujours dans la musique latine. Ses origines brésiliennes et son amour du groove le poussent à mixer et produire une musique dansante — des sonorités énergiques, profondes et percutantes.</p>
-          <div class="dj-shot"><img src="dj-djojo-live.jpg" alt="DJoJo" width="960" height="640" loading="lazy" decoding="async" /></div>
-          <p class="dj-lab" data-i18n="dj2_sets_lab">Sets récents</p>
-          <p class="dj-sets" data-i18n="dj2_sets">BoumBoum · RedRoom (IleSoniq) · 212 Club · Shameless MTP · Polytechnique Montréal · Bar Les Torchés</p>
-          <ul class="dj-links">
-            <li><a href="https://www.instagram.com/off.djojo_/" target="_blank" rel="noopener">Instagram</a></li>
-          </ul>
-        </div>
-      </article>
+    <div class="lineup-flyers">
+      <a class="lineup-flyer" href="flyer-vince.jpg" target="_blank" rel="noopener"
+         data-reveal data-i18n-attr="aria-label" data-i18n="lineup_flyer_aria" aria-label="Ouvrir le flyer en plein écran">
+        <img src="flyer-vince.jpg" width="848" height="1264" loading="lazy" decoding="async"
+             data-i18n-attr="alt" data-i18n="lineup_alt_vince" alt="Flyer de Vince — CLUB 2000, 12 septembre" />
+      </a>
+      <a class="lineup-flyer" href="flyer-djojo.jpg" target="_blank" rel="noopener"
+         data-reveal data-i18n-attr="aria-label" data-i18n="lineup_flyer_aria" aria-label="Ouvrir le flyer en plein écran">
+        <img src="flyer-djojo.jpg" width="1000" height="1491" loading="lazy" decoding="async"
+             data-i18n-attr="alt" data-i18n="lineup_alt_djojo" alt="Flyer de DJoJo — CLUB 2000, 12 septembre" />
+      </a>
+      <a class="lineup-flyer" href="flyer-ratchet.jpg" target="_blank" rel="noopener"
+         data-reveal data-i18n-attr="aria-label" data-i18n="lineup_flyer_aria" aria-label="Ouvrir le flyer en plein écran">
+        <img src="flyer-ratchet.jpg" width="1000" height="1500" loading="lazy" decoding="async"
+             data-i18n-attr="alt" data-i18n="lineup_alt_ratchet" alt="Flyer de Ratchet — CLUB 2000, 12 septembre" />
+      </a>
     </div>
   </section>
-  ══  FIN LINE-UP retirée  ·  rollback : décommenter ce bloc + le lien nav, puis renuméroter les kickers (infos 02→03, billets 03→04, faq 04→05)  ══ -->
 
   <!-- ══ INFOS ══ -->
   <section id="infos" class="infos reveal">
-    <p class="kicker"><span>02</span> <span data-i18n="info_kicker">Infos pratiques</span></p>
+    <p class="kicker"><span>03</span> <span data-i18n="info_kicker">Infos pratiques</span></p>
     <h2 class="section-title" data-split data-speed="-0.05" data-i18n="info_title">Tout ce qu'il <em>faut savoir</em></h2>
 
     <div class="info-grid">
@@ -252,7 +241,7 @@
 
       <div class="ticket-buy">
         <div class="ticket-card glass">
-          <p class="kicker"><span>03</span> <span data-i18n="tickets_kicker">Billets</span></p>
+          <p class="kicker"><span>04</span> <span data-i18n="tickets_kicker">Billets</span></p>
           <h2 class="section-title" data-split data-speed="-0.04" data-i18n="tickets_title">Entre dans le <em>CLUB 2000</em></h2>
 
           <ul class="tiers">
@@ -296,7 +285,7 @@
 
   <!-- ══ FAQ ══ -->
   <section id="faq" class="faq reveal">
-    <p class="kicker"><span>04</span> <span data-i18n="faq_kicker">FAQ</span></p>
+    <p class="kicker"><span>05</span> <span data-i18n="faq_kicker">FAQ</span></p>
     <h2 class="section-title" data-split data-speed="-0.05" data-i18n="faq_title">Questions <em>fréquentes</em></h2>
 
     <div class="faq-list" id="faqList">

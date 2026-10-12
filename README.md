@@ -1,7 +1,7 @@
 # CLUB 2000 — HALLOWEEN PARTY
 
 One-page site for **HALLOWEEN PARTY** (Fri. Oct 23 2026, 22:00 → 03:00, Red Room,
-2037 Saint-Denis, Montréal) presented by CLUB 2000. DJs: **Michael & Jason Mayers**.
+2037 Saint-Denis, Montréal) presented by CLUB 2000. DJs: **Jason & Michael Mayers**.
 Previous edition (Y2K RAVE, 12.09.26): flyers in `_archives/2026-09-12_y2k-rave/`,
 blue Y2K theme in git history before 2026-10-12.
 
@@ -23,7 +23,7 @@ gracefully if unreachable; without the widget script the ticket area is empty.
 | `main.js` | i18n, countdown, nav, scroll motion, hero video |
 | `hero-mask.jpg` | hero background (mask cropped from `flyer.png`) |
 | `flyer-halloween.jpg` · `flyer-dj.jpg` | web versions of the two flyers (sources `flyer.png` / `DJ.png`, gitignored) |
-| `dj-duo.jpg` | Michael & Jason photo, cropped from `DJ.png` |
+| `dj-duo.jpg` | Jason & Michael photo, cropped from `DJ.png` |
 | `og-image.jpg` | link preview (1200×630, from `DJ.png`) |
 | `favicon.ico` · `icon-192/512.png` · `apple-touch-icon.png` | site icon, generated from `hero.jpg` (gitignored source) |
 | `club-hero.mp4` / `.jpg` | old blue hero video — currently unused (see §4) |

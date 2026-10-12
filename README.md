@@ -1,7 +1,7 @@
 # CLUB 2000 — HALLOWEEN PARTY
 
 One-page site for **HALLOWEEN PARTY** (Fri. Oct 23 2026, 22:00 → 03:00, Red Room,
-2037 Saint-Denis, Montréal) presented by CLUB 2000. DJs: **Jason & Michael Mayers**.
+2037 Saint-Denis, Montréal) presented by CLUB 2000. DJs: **Jason & Michael Myers**.
 Previous edition (Y2K RAVE, 12.09.26): flyers in `_archives/2026-09-12_y2k-rave/`,
 blue Y2K theme in git history before 2026-10-12.
 

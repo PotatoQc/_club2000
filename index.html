@@ -229,7 +229,10 @@
 
         <!-- Billetterie Hi.Events — événement 11700 (Halloween 23.10). Le script est chargé en bas de page. -->
         <div class="ticket-widget" id="ticketWidget">
-          <!-- ⚠️ secondary-color sert AUSSI de couleur d'icône aux boutons +/- du
+          <!-- ⚠️ primary-text-color = couleur du TEXTE du widget (noms, prix) : doit
+               être clair sur background-color, sinon tout devient illisible.
+               Le bouton « Continuer » utilise secondary-color / secondary-text-color.
+               secondary-color sert AUSSI de couleur d’icône aux boutons +/- du
                sélecteur de quantité : il doit contraster avec background-color
                (un secondary trop proche du fond = boutons + / - invisibles). -->
           <div data-hievents-id="11700"
@@ -237,7 +240,7 @@
                data-hievents-widget-version="1.0"
                data-hievents-locale="fr"
                data-hievents-primary-color="#ff7a1a"
-               data-hievents-primary-text-color="#070605"
+               data-hievents-primary-text-color="#f3e3cf"
                data-hievents-secondary-color="#ffb067"
                data-hievents-secondary-text-color="#070605"
                data-hievents-background-color="#120c07"

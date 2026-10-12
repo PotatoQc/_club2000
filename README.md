@@ -1,12 +1,15 @@
-# CLUB 2000 — Y2K RAVE
+# CLUB 2000 — HALLOWEEN PARTY
 
-One-page site for **Y2K RAVE**, a techno night in Montréal presented by CLUB 2000.
+One-page site for **HALLOWEEN PARTY** (Fri. Oct 23 2026, 22:00 → 03:00, Red Room,
+2037 Saint-Denis, Montréal) presented by CLUB 2000. DJs: **Michael & Jason Mayers**.
+Previous edition (Y2K RAVE, 12.09.26): flyers in `_archives/2026-09-12_y2k-rave/`,
+blue Y2K theme in git history before 2026-10-12.
 
 Static site — **no build, no framework**. Open `index.html` in a browser, or host
 the folder as-is (GitHub Pages, Netlify, Vercel, any static server).
 
-Runtime dependencies are `<script>` / `<link>` tags only: Google Fonts (Chakra
-Petch, Instrument Sans, Space Mono), [Lenis](https://github.com/darkroomengineering/lenis)
+Runtime dependencies are `<script>` / `<link>` tags only: Google Fonts (Anton,
+Archivo, VT323), [Lenis](https://github.com/darkroomengineering/lenis)
 (smooth scroll) from a CDN, and the [Hi.Events](https://hi.events) ticketing
 widget (`app.hi.events/widget.js`) in `#billets`. Fonts / Lenis degrade
 gracefully if unreachable; without the widget script the ticket area is empty.
@@ -18,30 +21,31 @@ gracefully if unreachable; without the widget script the ticket area is empty.
 | `index.html` | markup + `data-i18n` keys |
 | `style.css` | all styling, tokens in `:root` |
 | `main.js` | i18n, countdown, nav, scroll motion, hero video |
-| `club-hero.mp4` / `.jpg` | hero background video (2.8 MB) + poster |
-| `favicon.ico` · `icon-192/512.png` · `apple-touch-icon.png` · `og-image.jpg` | site icon + link preview, generated from `hero.jpg` (gitignored source) |
-| `after-hours.jpg` · `dj-*.jpg` | flyer + DJ photos |
+| `hero-mask.jpg` | hero background (mask cropped from `flyer.png`) |
+| `flyer-halloween.jpg` · `flyer-dj.jpg` | web versions of the two flyers (sources `flyer.png` / `DJ.png`, gitignored) |
+| `dj-duo.jpg` | Michael & Jason photo, cropped from `DJ.png` |
+| `og-image.jpg` | link preview (1200×630, from `DJ.png`) |
+| `favicon.ico` · `icon-192/512.png` · `apple-touch-icon.png` | site icon, generated from `hero.jpg` (gitignored source) |
+| `club-hero.mp4` / `.jpg` | old blue hero video — currently unused (see §4) |
 | `PRODUCT.md` | product truth (audience, event facts, constraints) |
 | `DESIGN.md` | the visual system + motion spec |
 
 ## Look
 
-Deep-navy Y2K-revival techno, keyed to the **AFTER HOURS flyer** (`after-hours.jpg`):
-liquid-chrome wordmark, electric-blue accents, one cobalt signal colour used
-sparingly, a dark-filtered background video, animated equalizer. Fully monochrome
-blue — no pink/warmth. The post-hero background is a **living haze** (`.bg` in
-`style.css`, `bgHaze()` in `main.js`): a low-res `<canvas>` of slow-flowing blue
-fog (hand-rolled fractal noise, no library) over a near-black depth gradient,
-blurred and `screen`-blended, ~30fps, self-freezing on weak devices — then
-wireframe mesh + halftone dots + scanlines + grain + a ghost wordmark down the
-right edge. Inspired by santionispirits.com. Tokens live under `/* Tokens */`.
+**« Cassette VHS »**: an 80s slasher tape rented from the video store, keyed to
+the Halloween flyer. Pumpkin orange on black, on-screen display (`PLAY ▶`,
+blinking `REC`, `CH 03`) in VT323, heavy scanlines, an RGB colour bleed
+(`--rgb-split`) on the big Anton titles with an occasional tracking jitter, and a
+slow tracking line rolling down the page. Square corners everywhere. The
+post-hero **living haze** (`.bg` in `style.css`, `bgHaze()` in `main.js`) is kept,
+re-tinted orange. Tokens live under `/* Tokens */`.
 
 | Token | Value |
 |---|---|
-| `--ink` | `#04050e` |
-| `--volt` | `#3d7bff` (signal only; was `--pink`) |
-| `--cyan` | `#5eb0ff` |
-| Display / body / data fonts | Chakra Petch / Instrument Sans / Space Mono |
+| `--ink` | `#070605` |
+| `--volt` | `#ff7a1a` pumpkin orange (signal colour; the name is historical) |
+| `--cyan` | `#9fb35a` VHS screen green (OSD labels, focus ring) |
+| Display / body / data fonts | Anton / Archivo / VT323 |
 
 Motion: Lenis inertia scroll, magnetic CTAs, masked word-by-word heading reveals,
 scroll parallax on the date. **Everything stops under `prefers-reduced-motion`.**
@@ -52,7 +56,7 @@ scroll parallax on the date. **Everything stops under `prefers-reduced-motion`.*
 
 ```js
 const CONFIG = {
-  eventDate: '2026-09-12T22:00:00-04:00', // ISO 8601, -04:00 = Eastern (summer)
+  eventDate: '2026-10-23T22:00:00-04:00', // ISO 8601, -04:00 = Eastern (summer)
   ticketUrl: '',                          // paste the link; empty = "Billetterie bientôt"
 };
 ```
@@ -67,20 +71,24 @@ the HTML — `applyLang()` overwrites the HTML on load. Look for `data-i18n` in
 
 ### 3. Content marked `À MODIFIER` in `index.html`
 
-- **Line-up** — 2 DJ profile cards (Azathø, DJoJo). Names, roles, style tags and
-  bios live in `I18N` (`dj1_*` / `dj2_*`, FR + EN); the artist links are hard-coded
-  `<a>` in the two `.dj` articles. Photos: `dj-<name>.jpg` (4:5 portrait) +
-  `dj-<name>-live.jpg` (3:2). Raw source material is under `DJ/` (gitignored).
+- **DJ** (`#dj`) — one featured duo. Names are literal in `.dj-names`; the hero
+  line is `hero_dj` in `I18N`, the rest is `dj_*` (FR + EN). Photo: `dj-duo.jpg`.
 - **Tickets** — tier summary text in `<ul class="tiers">` (literal, not i18n).
-  The real sale is the **Hi.Events widget** (`#ticketWidget`, event `10580`) —
+  The real sale is the **Hi.Events widget** (`#ticketWidget`, event `11700`) —
   edit the `data-hievents-*` attributes to re-theme / re-point it; `widget.js`
   loads at the bottom of `index.html`. Set `CONFIG.ticketUrl` in `main.js` only
   to override with an external ticketing link.
-- **Flyer** — `#billets` shows `after-hours.jpg` (source `After Hours.png`,
+- **Flyer** — `#billets` shows `flyer-halloween.jpg` (source `flyer.png`,
   gitignored). Swap by re-exporting to the same filename; keep it portrait.
+  When an edition ends, move its flyers to `_archives/<date>_<name>/`.
 - **Footer** — real Instagram / SoundCloud / email
 
-### 4. Hero background video
+### 4. Hero background
+
+The hero currently shows a still image (`hero-mask.jpg`, filtered in CSS). To go
+back to a video, replace the `<img>` in `.hero-video` with the old
+`<video id="heroVideo" data-src-mp4="…">` block (git history); `heroVideo()` in
+`main.js` still handles it, as described below.
 
 `club-hero.mp4` (900 px, H.264, no audio) is set via `data-src-mp4` on
 `#heroVideo`. The dark look is **baked into the file** — there is no CSS

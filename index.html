@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" data-i18n-attr="content" data-i18n="meta_desc" content="CLUB 2000 présente Y2K RAVE — une nuit techno à Montréal. Le son de l'an 2000, rejoué plus fort. 12 septembre 2026." />
-  <meta name="theme-color" content="#04050e" />
+  <meta name="description" data-i18n-attr="content" data-i18n="meta_desc" content="CLUB 2000 présente HALLOWEEN PARTY au Red Room : Michael & Jason Mayers aux platines. Vendredi 23 octobre 2026, de 22 h à 3 h, Montréal." />
+  <meta name="theme-color" content="#070605" />
 
   <!-- Icône du site (onglet, favoris, résultats de recherche) — généré depuis hero.jpg -->
   <link rel="icon" href="favicon.ico" sizes="any" />
@@ -15,19 +15,19 @@
   <!-- Aperçu lors du partage du lien -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://potatoqc.github.io/_club2000/" />
-  <meta property="og:title" content="CLUB 2000 — Y2K RAVE" />
-  <meta property="og:description" content="Une nuit techno à Montréal. Le son de l'an 2000, rejoué plus fort. 12 septembre 2026." />
+  <meta property="og:title" content="CLUB 2000 — HALLOWEEN PARTY" />
+  <meta property="og:description" content="Michael & Jason Mayers aux platines. Vendredi 23 octobre 2026, 22 h à 3 h — Red Room, 2037 Saint-Denis, Montréal." />
   <meta property="og:image" content="https://potatoqc.github.io/_club2000/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://potatoqc.github.io/_club2000/og-image.jpg" />
 
-  <title>CLUB 2000 — Y2K RAVE · Montréal</title>
+  <title>CLUB 2000 — HALLOWEEN PARTY · Montréal</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&family=VT323&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -36,7 +36,7 @@
   <!-- ══ INTRO — rideau de chargement ══ -->
   <div class="intro" id="intro" role="presentation">
     <div class="intro__inner">
-      <span class="intro__label">CLUB 2000</span>
+      <span class="intro__label">▶ PLAY · CLUB 2000</span>
       <span class="intro__bar"><span class="intro__fill" id="introFill"></span></span>
       <span class="intro__count" id="introCount">00</span>
     </div>
@@ -49,8 +49,9 @@
     <span class="bg-mesh"></span>
     <span class="bg-dots"></span>
     <span class="scanlines"></span>
+    <span class="vhs-track"></span>
     <span class="grain"></span>
-    <span class="bg-mark">CLUB 2000 · TECHNO THROWBACK · AFTER HOURS · 12.09.26 · </span>
+    <span class="bg-mark">HALLOWEEN PARTY · RED ROOM · 23.10.26 · </span>
   </div>
   <div class="scroll-bar" id="scrollBar" aria-hidden="true"></div>
 
@@ -58,15 +59,16 @@
   <nav id="nav">
     <a class="brand" href="#top" aria-label="CLUB 2000">
       <span class="brand-mark" aria-hidden="true"></span>
+      <img class="brand-logo" src="apple-touch-icon.png" width="180" height="180" alt="" />
       CLUB<span>2000</span>
     </a>
 
     <ul class="nav-links" id="navLinks">
       <li><a href="#soiree" data-i18n="nav_night">Soirée</a></li>
-      <li><a href="#lineup" data-i18n="nav_lineup">Line-up</a></li>
+      <li><a href="#dj" data-i18n="nav_dj">DJ</a></li>
       <li><a href="#infos" data-i18n="nav_info">Infos</a></li>
       <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
-      <li><a class="btn btn--fill btn--sm" href="#billets" data-magnetic data-i18n="nav_tickets">Billets</a></li>
+      <li><a class="btn btn--fill btn--sm" href="#billets" data-i18n="nav_tickets">Billets</a></li>
     </ul>
 
     <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch to English">EN</button>
@@ -79,40 +81,31 @@
 
   <!-- ══ HERO ══ -->
   <header id="top" class="hero">
-    <!-- ✏️ VIDÉO D'AMBIANCE — `club-hero.mp4` (2,8 Mo, 1152×~648, 24 ips, sans son),
-         généré depuis `test.mp4`. Le fichier source `test.mp4` (62 Mo) peut être
-         supprimé. Pour changer la vidéo : réencoder et garder ce nom. -->
+    <!-- ✏️ FOND DU HÉRO — `hero-mask.jpg` : le masque recadré depuis `flyer.png`
+         (source gitignorée). Pour remettre une vidéo d'ambiance, remplacer
+         l'<img> par le bloc <video id="heroVideo" …> (voir README). -->
     <div class="hero-video" aria-hidden="true">
-      <video id="heroVideo" muted loop playsinline autoplay preload="none"
-             data-poster="club-hero.jpg"
-             data-src-webm=""
-             data-src-mp4="club-hero.mp4"></video>
+      <img src="hero-mask.jpg" width="1000" height="944" alt="" fetchpriority="high" decoding="async" />
     </div>
+    <span class="osd osd--l" aria-hidden="true">PLAY ▶</span>
+    <span class="osd osd--r" aria-hidden="true"><span class="osd-rec">REC</span> 23.10.26</span>
 
     <div class="hero-content">
-      <p class="eyebrow" data-rise>
-        <span class="eyebrow-led"></span>
-        <span data-i18n="hero_eyebrow">CLUB 2000 · Nuit techno</span>
-      </p>
+      <p class="eyebrow" data-rise data-i18n="hero_eyebrow">CLUB 2000 présente</p>
 
       <h1 class="wordmark" data-rise data-lines>
-        <span class="chrome">Y2K</span>
-        <span class="chrome">RAVE</span>
+        <span class="chrome">Halloween</span>
+        <span class="chrome">Party</span>
       </h1>
 
-      <p class="hero-sub" data-rise data-i18n="hero_sub">
-        Six heures de techno. Le son de l'an 2000, rejoué plus fort.
-      </p>
+      <p class="hero-sub" data-rise data-i18n="hero_sub">Ven 23 oct · 22:00 → 03:00<br /><b>Red Room</b> · 2037 Saint-Denis</p>
 
-      <!-- <p class="hero-tags" data-rise>
-        <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-        <span data-i18n="hero_tags">Techno — 130-142 BPM — mur de son</span>
-      </p> -->
+      <p class="hero-dj" data-rise data-i18n="hero_dj"><span>&gt; aux platines</span> Michael <em>&amp;</em> Jason Mayers</p>
 
       <div class="hero-cta" data-rise>
-        <a class="btn btn--fill btn--lg" href="#billets" data-magnetic data-i18n="hero_cta_primary">Réserver ma place</a>
-        <a class="btn btn--ghost btn--lg" href="#soiree" data-magnetic>
-          <span data-i18n="hero_cta_secondary">Voir la soirée</span>
+        <a class="btn btn--fill btn--lg" href="#billets" data-i18n="hero_cta_primary">Billets dès 10 $</a>
+        <a class="btn btn--ghost btn--lg" href="#dj">
+          <span data-i18n="hero_cta_secondary">Les DJ</span>
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
         </a>
       </div>
@@ -123,15 +116,15 @@
   <!-- 6 copies identiques : la boucle CSS (`translateX(-50%)`) est déjà sans
        raccord jusqu'à ~2800 px de large SANS JS. `ticker()` dans main.js ajuste
        ensuite le nombre exact de copies et, en mouvement, couple la vitesse au
-       scroll. Le premier <span> porte les `data-i18n` — les autres sont clonés. -->
+       scroll. Textes identiques en FR / EN → aucun `data-i18n` ici. -->
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
-      <span class="ticker-set"><span>Y2K RAVE</span><b>✦</b><span data-i18n="ticker_1">Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span data-i18n="ticker_2">An 2000</span><b>✦</b></span>
-      <span class="ticker-set"><span>Y2K RAVE</span><b>✦</b><span>Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span>An 2000</span><b>✦</b></span>
-      <span class="ticker-set"><span>Y2K RAVE</span><b>✦</b><span>Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span>An 2000</span><b>✦</b></span>
-      <span class="ticker-set"><span>Y2K RAVE</span><b>✦</b><span>Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span>An 2000</span><b>✦</b></span>
-      <span class="ticker-set"><span>Y2K RAVE</span><b>✦</b><span>Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span>An 2000</span><b>✦</b></span>
-      <span class="ticker-set"><span>Y2K RAVE</span><b>✦</b><span>Techno toute la nuit</span><b>✦</b><span>Montréal</span><b>✦</b><span>An 2000</span><b>✦</b></span>
+      <span class="ticker-set"><span>Halloween Party</span><b>✦</b><span>Michael &amp; Jason Mayers</span><b>✦</b><span>23.10</span><b>✦</b><span>Red Room</span><b>✦</b></span>
+      <span class="ticker-set"><span>Halloween Party</span><b>✦</b><span>Michael &amp; Jason Mayers</span><b>✦</b><span>23.10</span><b>✦</b><span>Red Room</span><b>✦</b></span>
+      <span class="ticker-set"><span>Halloween Party</span><b>✦</b><span>Michael &amp; Jason Mayers</span><b>✦</b><span>23.10</span><b>✦</b><span>Red Room</span><b>✦</b></span>
+      <span class="ticker-set"><span>Halloween Party</span><b>✦</b><span>Michael &amp; Jason Mayers</span><b>✦</b><span>23.10</span><b>✦</b><span>Red Room</span><b>✦</b></span>
+      <span class="ticker-set"><span>Halloween Party</span><b>✦</b><span>Michael &amp; Jason Mayers</span><b>✦</b><span>23.10</span><b>✦</b><span>Red Room</span><b>✦</b></span>
+      <span class="ticker-set"><span>Halloween Party</span><b>✦</b><span>Michael &amp; Jason Mayers</span><b>✦</b><span>23.10</span><b>✦</b><span>Red Room</span><b>✦</b></span>
     </div>
   </div>
 
@@ -140,8 +133,8 @@
     <p class="kicker"><span>01</span> <span data-i18n="next_kicker">La soirée</span></p>
 
     <div class="next-head">
-      <h2 class="next-date" data-speed="0.05"><time datetime="2026-09-12">12<span>.</span>09<span>.</span>26</time></h2>
-      <p class="next-name">Y2K RAVE — <span data-i18n="next_sub">présenté par CLUB 2000</span></p>
+      <h2 class="next-date" data-speed="0.05"><time datetime="2026-10-23">23<span>.</span>10<span>.</span>26</time></h2>
+      <p class="next-name">HALLOWEEN PARTY — <span data-i18n="next_sub">présenté par CLUB 2000</span></p>
     </div>
 
     <div class="countdown" id="countdown" role="timer" aria-live="off">
@@ -153,8 +146,8 @@
     <p class="cd-note" id="cdNote" aria-live="polite"></p>
 
     <dl class="next-facts">
-      <div><dt data-i18n="fact_venue">Lieu</dt><dd>2037 rue Saint-Denis, Montréal<br /><span data-i18n="fact_venue_sub">Quartier latin · métro Sherbrooke</span></dd></div>
-      <div><dt data-i18n="fact_doors">Portes</dt><dd><span data-i18n="fact_doors_val">22 h — 04 h</span><br /><span data-i18n="fact_doors_sub">Système son grand format</span></dd></div>
+      <div><dt data-i18n="fact_venue">Lieu</dt><dd>Red Room · 2037 rue Saint-Denis, Montréal<br /><span data-i18n="fact_venue_sub">Quartier latin · métro Sherbrooke</span></dd></div>
+      <div><dt data-i18n="fact_doors">Portes</dt><dd><span data-i18n="fact_doors_val">22 h — 03 h</span><br /><span data-i18n="fact_doors_sub">Système son grand format</span></dd></div>
       <div><dt data-i18n="fact_access">Accès</dt><dd><span data-i18n="fact_access_val">18 + · pièce d'identité</span><br /><span data-i18n="fact_access_sub">Entrées et sorties permises</span></dd></div>
     </dl>
 
@@ -163,54 +156,35 @@
       <span data-i18n="perk_text">Cadeau garanti aux 30 premières personnes arrivées.</span>
     </p>
 
-    <a class="btn btn--fill btn--lg btn--block" id="ticketBtn" href="#billets" data-ticket-link data-magnetic data-i18n="next_cta">Prendre un billet</a>
+    <a class="btn btn--fill btn--lg btn--block" id="ticketBtn" href="#billets" data-ticket-link data-i18n="next_cta">Prendre un billet</a>
   </section>
 
-  <!-- ══ LINE-UP ══
-       3 flyers fournis par le client (source : ratchet.png / djodjo.png / vince.png, gitignorés),
-       versions web : flyer-vince.jpg / flyer-djojo.jpg / flyer-ratchet.jpg.
-       Ancienne section 2-DJ (Azathø + DJoJo profils) : voir l'historique git avant le 2026-09-08. -->
-  <section id="lineup" class="lineup reveal">
-    <p class="kicker"><span>02</span> <span data-i18n="lineup_kicker">Line-up</span></p>
-    <h2 class="section-title" data-split data-speed="-0.05" data-i18n="lineup_title">Trois artistes, <em>une nuit</em></h2>
-    <p class="lineup-note" data-i18n="lineup_note">Trois sets qui s'enchaînent, de l'ouverture à la fermeture.</p>
+  <!-- ══ DJ — Michael & Jason Mayers, en vedette ══
+       Photo recadrée depuis `DJ.png` (source gitignorée) → dj-duo.jpg ;
+       flyer DJ complet → flyer-dj.jpg. Ancien line-up à 3 DJ (12.09) :
+       historique git avant le 2026-10-12, flyers dans _archives/. -->
+  <section id="dj" class="dj-section reveal">
+    <p class="kicker"><span>02</span> <span data-i18n="dj_kicker">DJ</span></p>
+    <h2 class="section-title" data-split data-speed="-0.05" data-i18n="dj_title">Un seul duo, <em>toute la nuit</em></h2>
 
-    <p class="lineup-order-lab" data-i18n="lineup_order_lab">Ordre de passage</p>
-    <ol class="run-order">
-      <li class="slot" data-reveal>
-        <span class="slot-num" aria-hidden="true">01</span>
-        <span class="slot-name">Vince</span>
-        <span class="slot-time" data-i18n="lineup_time_vince">22 h – 23 h 30</span>
-      </li>
-      <li class="slot" data-reveal>
-        <span class="slot-num" aria-hidden="true">02</span>
-        <span class="slot-name">DJoJo</span>
-        <span class="slot-time" data-i18n="lineup_time_djojo">23 h 30 – 01 h 30</span>
-      </li>
-      <li class="slot" data-reveal>
-        <span class="slot-num" aria-hidden="true">03</span>
-        <span class="slot-name">Ratchet</span>
-        <span class="slot-time" data-i18n="lineup_time_ratchet">01 h 30 – 03 h</span>
-      </li>
-    </ol>
-
-    <div class="lineup-flyers">
-      <a class="lineup-flyer" href="flyer-vince.jpg" target="_blank" rel="noopener"
-         data-reveal data-i18n-attr="aria-label" data-i18n="lineup_flyer_aria" aria-label="Ouvrir le flyer en plein écran">
-        <img src="flyer-vince.jpg" width="848" height="1264" loading="lazy" decoding="async"
-             data-i18n-attr="alt" data-i18n="lineup_alt_vince" alt="Flyer de Vince — CLUB 2000, 12 septembre" />
-      </a>
-      <a class="lineup-flyer" href="flyer-djojo.jpg" target="_blank" rel="noopener"
-         data-reveal data-i18n-attr="aria-label" data-i18n="lineup_flyer_aria" aria-label="Ouvrir le flyer en plein écran">
-        <img src="flyer-djojo.jpg" width="1000" height="1491" loading="lazy" decoding="async"
-             data-i18n-attr="alt" data-i18n="lineup_alt_djojo" alt="Flyer de DJoJo — CLUB 2000, 12 septembre" />
-      </a>
-      <a class="lineup-flyer" href="flyer-ratchet.jpg" target="_blank" rel="noopener"
-         data-reveal data-i18n-attr="aria-label" data-i18n="lineup_flyer_aria" aria-label="Ouvrir le flyer en plein écran">
-        <img src="flyer-ratchet.jpg" width="1000" height="1500" loading="lazy" decoding="async"
-             data-i18n-attr="alt" data-i18n="lineup_alt_ratchet" alt="Flyer de Ratchet — CLUB 2000, 12 septembre" />
-      </a>
-    </div>
+    <article class="dj-feature" data-reveal>
+      <div class="dj-screen">
+        <img src="dj-duo.jpg" width="887" height="708" loading="lazy" decoding="async"
+             data-i18n-attr="alt" data-i18n="dj_alt" alt="Michael et Jason Mayers" />
+        <span class="osd osd--l" aria-hidden="true">CH 03</span>
+        <span class="osd osd--r" aria-hidden="true">22:00 → 03:00</span>
+      </div>
+      <div class="dj-copy">
+        <p class="dj-lab" data-i18n="dj_lab">&gt; DJ de la soirée</p>
+        <h3 class="dj-names">Michael <em>&amp;</em><br />Jason Mayers</h3>
+        <p class="dj-when" data-i18n="dj_when">Aux platines de 22 h à 03 h. Personne d’autre.</p>
+        <a class="dj-flyer" href="flyer-dj.jpg" target="_blank" rel="noopener">
+          <img src="flyer-dj.jpg" width="1000" height="1334" loading="lazy" decoding="async"
+               data-i18n-attr="alt" data-i18n="dj_flyer_alt" alt="Flyer DJ — Michael & Jason Mayers, 23 octobre, Red Room" />
+          <span data-i18n="dj_flyer">Voir le flyer DJ</span>
+        </a>
+      </div>
+    </article>
   </section>
 
   <!-- ══ INFOS ══ -->
@@ -219,8 +193,8 @@
     <h2 class="section-title" data-split data-speed="-0.05" data-i18n="info_title">Tout ce qu'il <em>faut savoir</em></h2>
 
     <div class="info-grid">
-      <article class="glass" data-reveal><h3 data-i18n="info_1_h">Date &amp; horaire</h3><p data-i18n="info_1_p">Samedi 12 septembre 2026. Portes à 22 h, fin à 04 h.</p></article>
-      <article class="glass" data-reveal><h3 data-i18n="info_2_h">Emplacement</h3><p data-i18n="info_2_p">2037 rue Saint-Denis, Montréal — Quartier latin, à 3 min du métro Sherbrooke.</p></article>
+      <article class="glass" data-reveal><h3 data-i18n="info_1_h">Date &amp; horaire</h3><p data-i18n="info_1_p">Vendredi 23 octobre 2026. Portes à 22 h, fin à 03 h.</p></article>
+      <article class="glass" data-reveal><h3 data-i18n="info_2_h">Emplacement</h3><p data-i18n="info_2_p">Red Room, 2037 rue Saint-Denis, Montréal — Quartier latin, à 3 min du métro Sherbrooke.</p></article>
       <article class="glass" data-reveal><h3 data-i18n="info_3_h">Accès</h3><p data-i18n="info_3_p">Événement 18 +. Pièce d'identité avec photo obligatoire. Entrées et sorties permises toute la nuit.</p></article>
       <article class="glass" data-reveal><h3 data-i18n="info_4_h">Sur place</h3><p data-i18n="info_4_p">Vestiaire, bar, point d'eau gratuit. Système son grand format. Cadeau aux 30 premières personnes. Zéro jugement.</p></article>
     </div>
@@ -229,49 +203,49 @@
   <!-- ══ BILLETS ══ -->
   <section id="billets" class="tickets reveal">
     <div class="tickets-inner">
-      <!-- Affiche officielle — source : "After Hours.png" (gitignored), version web : after-hours.jpg -->
-      <a class="ticket-poster" href="after-hours.jpg" target="_blank" rel="noopener"
+      <!-- Flyer officiel — source : flyer.png (gitignoré), version web : flyer-halloween.jpg -->
+      <a class="ticket-poster" href="flyer-halloween.jpg" target="_blank" rel="noopener"
          data-reveal data-i18n-attr="aria-label" data-i18n="poster_aria"
-         aria-label="Ouvrir l'affiche AFTER HOURS en plein écran">
-        <img src="after-hours.jpg" width="1240" height="1604" loading="lazy" decoding="async"
+         aria-label="Ouvrir le flyer en plein écran">
+        <img src="flyer-halloween.jpg" width="1000" height="1334" loading="lazy" decoding="async"
              data-i18n-attr="alt" data-i18n="poster_alt"
-             alt="Affiche AFTER HOURS — CLUB 2000, 12 septembre, 2037 rue Saint-Denis, Montréal" />
+             alt="Flyer HALLOWEEN PARTY — CLUB 2000, 23 octobre, Red Room, 2037 rue Saint-Denis, Montréal" />
         <span class="ticket-poster__tag" data-i18n="poster_tag">Affiche</span>
       </a>
 
       <div class="ticket-buy">
         <div class="ticket-card glass">
           <p class="kicker"><span>04</span> <span data-i18n="tickets_kicker">Billets</span></p>
-          <h2 class="section-title" data-split data-speed="-0.04" data-i18n="tickets_title">Entre dans le <em>CLUB 2000</em></h2>
+          <h2 class="section-title" data-split data-speed="-0.04" data-i18n="tickets_title">Entre au <em>Red Room</em></h2>
 
           <ul class="tiers">
             <li class="tier tier--live">
-              <span class="tier-name" data-i18n="tier_online">En ligne</span>
+              <span class="tier-name" data-i18n="tier_online">1re vague</span>
               <span class="tier-price">10 $</span>
               <span class="tier-tag" data-i18n="tier_online_tag">En vente</span>
             </li>
             <li class="tier">
-              <span class="tier-name" data-i18n="tier_door">À la porte</span>
-              <span class="tier-price">12 $</span>
-              <span class="tier-tag" data-i18n="tier_door_tag">Le soir même</span>
+              <span class="tier-name" data-i18n="tier_door">Vagues suivantes</span>
+              <span class="tier-price">↗</span>
+              <span class="tier-tag" data-i18n="tier_door_tag">Le prix monte</span>
             </li>
           </ul>
         </div>
 
-        <!-- Billetterie Hi.Events — événement 10580. Le script est chargé en bas de page. -->
+        <!-- Billetterie Hi.Events — événement 11700 (Halloween 23.10). Le script est chargé en bas de page. -->
         <div class="ticket-widget" id="ticketWidget">
           <!-- ⚠️ secondary-color sert AUSSI de couleur d'icône aux boutons +/- du
                sélecteur de quantité : il doit contraster avec background-color
                (un secondary trop proche du fond = boutons + / - invisibles). -->
-          <div data-hievents-id="10580"
+          <div data-hievents-id="11700"
                data-hievents-widget-type="widget"
                data-hievents-widget-version="1.0"
                data-hievents-locale="fr"
-               data-hievents-primary-color="#3d7bff"
-               data-hievents-primary-text-color="#ffffff"
-               data-hievents-secondary-color="#5eb0ff"
-               data-hievents-secondary-text-color="#081226"
-               data-hievents-background-color="#0a0f30"
+               data-hievents-primary-color="#ff7a1a"
+               data-hievents-primary-text-color="#070605"
+               data-hievents-secondary-color="#ffb067"
+               data-hievents-secondary-text-color="#070605"
+               data-hievents-background-color="#120c07"
                data-hievents-padding="16px"
                data-hievents-autoresize="true"
                data-hievents-continue-button-text="Continuer"
@@ -291,7 +265,7 @@
     <div class="faq-list" id="faqList">
       <details class="faq-item">
         <summary><span data-i18n="faq_1_q">Où se passe l'événement ?</span><i aria-hidden="true"></i></summary>
-        <div class="faq-a"><p data-i18n="faq_1_a">Au 2037 rue Saint-Denis, à Montréal, dans le Quartier latin — à quelques pas du métro Sherbrooke. Les consignes d'accès sont envoyées par courriel aux détenteurs de billets la veille.</p></div>
+        <div class="faq-a"><p data-i18n="faq_1_a">Au Red Room, 2037 rue Saint-Denis, à Montréal, dans le Quartier latin — à quelques pas du métro Sherbrooke. Les consignes d'accès sont envoyées par courriel aux détenteurs de billets la veille.</p></div>
       </details>
       <details class="faq-item">
         <summary><span data-i18n="faq_2_q">Quel est l'âge minimum ?</span><i aria-hidden="true"></i></summary>
@@ -302,8 +276,8 @@
         <div class="faq-a"><p data-i18n="faq_3_a">Oui. Tu peux sortir et revenir librement pendant la nuit — garde ton billet ou ton bracelet sur toi.</p></div>
       </details>
       <details class="faq-item">
-        <summary><span data-i18n="faq_4_q">Comment je rentre chez moi à 4 h ?</span><i aria-hidden="true"></i></summary>
-        <div class="faq-a"><p data-i18n="faq_4_a">À 4 h le métro ne roule pas encore (premier passage vers 05 h 30). Les taxis et VTC couvrent le secteur toute la nuit, et le réseau de bus de nuit de la STM dessert le Quartier latin.</p></div>
+        <summary><span data-i18n="faq_4_q">Comment je rentre chez moi à 3 h ?</span><i aria-hidden="true"></i></summary>
+        <div class="faq-a"><p data-i18n="faq_4_a">À 3 h le métro ne roule pas encore (premier passage vers 05 h 30). Les taxis et VTC couvrent le secteur toute la nuit, et le réseau de bus de nuit de la STM dessert le Quartier latin.</p></div>
       </details>
       <details class="faq-item">
         <summary><span data-i18n="faq_5_q">Le cadeau des 30 premiers, c'est quoi ?</span><i aria-hidden="true"></i></summary>
@@ -318,6 +292,7 @@
 
   <!-- ══ FOOTER ══ -->
   <footer>
+    <img class="foot-logo" src="apple-touch-icon.png" width="180" height="180" loading="lazy" decoding="async" alt="Logo CLUB 2000" />
     <span class="foot-mark chrome">CLUB 2000</span>
     <p class="foot-line" data-i18n="foot_line">Promoteur d'événements techno — Montréal · depuis l'an 2000</p>
     <!-- ✏️ À MODIFIER : vrais liens Instagram / SoundCloud + adresse courriel -->

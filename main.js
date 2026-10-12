@@ -1,5 +1,5 @@
 /* ============================================================
-   CLUB 2000 — Y2K RAVE · interactions
+   CLUB 2000 — HALLOWEEN PARTY · interactions
    Bilingue FR / EN, compte à rebours, nav, révélations,
    défilement cinétique. Tout ce qui bouge respecte
    prefers-reduced-motion.
@@ -7,7 +7,7 @@
 
 const CONFIG = {
   // ✏️ Format ISO 8601, -04:00 = heure de l'Est (été)
-  eventDate: '2026-09-12T22:00:00-04:00',
+  eventDate: '2026-10-23T22:00:00-04:00',
   // ✏️ URL de billetterie externe. PRIORITAIRE si renseignée (ouvre un onglet).
   //    Sinon, le widget Hi.Events intégré dans #billets prend le relais et les
   //    boutons « billet » y renvoient. Vide + pas de widget = bouton désactivé.
@@ -62,17 +62,16 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
    ───────────────────────────────────────────── */
 const I18N = {
   fr: {
-    meta_title: 'CLUB 2000 — Y2K RAVE · Montréal',
-    meta_desc: "CLUB 2000 présente Y2K RAVE — une nuit techno à Montréal. Le son de l'an 2000, rejoué plus fort. 12 septembre 2026.",
-    nav_night: 'Soirée', nav_lineup: 'Line-up', nav_info: 'Infos', nav_faq: 'FAQ', nav_tickets: 'Billets',
+    meta_title: 'CLUB 2000 — HALLOWEEN PARTY · Montréal',
+    meta_desc: 'CLUB 2000 présente HALLOWEEN PARTY au Red Room : Michael & Jason Mayers aux platines. Vendredi 23 octobre 2026, de 22 h à 3 h, Montréal.',
+    nav_night: 'Soirée', nav_dj: 'DJ', nav_info: 'Infos', nav_faq: 'FAQ', nav_tickets: 'Billets',
     nav_open: 'Ouvrir le menu', nav_close: 'Fermer le menu',
     lang_aria: 'Switch to English',
-    hero_eyebrow: 'CLUB 2000 · Nuit techno',
-    hero_sub: "Cinq heures de techno. Le son de l'an 2000, rejoué plus fort.",
-    // hero_tags: 'Techno — 130-142 BPM — mur de son',
-    hero_cta_primary: 'Réserver ma place',
-    hero_cta_secondary: 'Voir la soirée',
-    ticker_1: 'Techno toute la nuit', ticker_2: 'An 2000',
+    hero_eyebrow: 'CLUB 2000 présente',
+    hero_sub: 'Ven 23 oct · 22:00 → 03:00<br /><b>Red Room</b> · 2037 Saint-Denis',
+    hero_dj: '<span>&gt; aux platines</span> Michael <em>&amp;</em> Jason Mayers',
+    hero_cta_primary: 'Billets dès 10 $',
+    hero_cta_secondary: 'Les DJ',
     next_kicker: 'La soirée',
     next_sub: 'présenté par CLUB 2000',
     cd_days: 'jours', cd_hours: 'heures', cd_min: 'min', cd_sec: 'sec',
@@ -81,47 +80,43 @@ const I18N = {
     cd_note_hours: 'Plus que quelques heures.',
     cd_note_live: "C'est ce soir. On se voit sur le dancefloor.",
     fact_venue: 'Lieu', fact_venue_sub: 'Quartier latin · métro Sherbrooke',
-    fact_doors: 'Portes', fact_doors_val: '22 h — 04 h', fact_doors_sub: 'Système son grand format',
+    fact_doors: 'Portes', fact_doors_val: '22 h — 03 h', fact_doors_sub: 'Système son grand format',
     fact_access: 'Accès', fact_access_val: '18 + · pièce d’identité', fact_access_sub: 'Entrées et sorties permises',
     perk_text: 'Cadeau garanti aux 30 premières personnes arrivées.',
     next_cta: 'Prendre un billet',
-    lineup_kicker: 'Line-up',
-    lineup_title: 'Trois artistes, <em>une nuit</em>',
-    lineup_note: "Trois sets qui s'enchaînent, de l'ouverture à la fermeture.",
-    lineup_order_lab: 'Ordre de passage',
-    lineup_time_vince: '22 h – 23 h 30',
-    lineup_time_djojo: '23 h 30 – 01 h 30',
-    lineup_time_ratchet: '01 h 30 – 03 h',
-    lineup_flyer_aria: 'Ouvrir le flyer en plein écran',
-    lineup_alt_vince: 'Flyer de Vince — CLUB 2000, 12 septembre, 2037 rue Saint-Denis, Montréal',
-    lineup_alt_djojo: 'Flyer de DJoJo — CLUB 2000, 12 septembre, 2037 rue Saint-Denis, Montréal',
-    lineup_alt_ratchet: 'Flyer de Ratchet — CLUB 2000, 12 septembre, 2037 rue Saint-Denis, Montréal',
+    dj_kicker: 'DJ',
+    dj_title: 'Un seul duo, <em>toute la nuit</em>',
+    dj_lab: '&gt; DJ de la soirée',
+    dj_when: 'Aux platines de 22 h à 03 h. Personne d’autre.',
+    dj_alt: 'Michael et Jason Mayers',
+    dj_flyer: 'Voir le flyer DJ',
+    dj_flyer_alt: 'Flyer DJ — Michael & Jason Mayers, 23 octobre, Red Room',
     info_kicker: 'Infos pratiques',
     info_title: "Tout ce qu'il <em>faut savoir</em>",
-    info_1_h: 'Date & horaire', info_1_p: 'Samedi 12 septembre 2026. Portes à 22 h, fin à 04 h.',
-    info_2_h: 'Emplacement', info_2_p: '2037 rue Saint-Denis, Montréal — Quartier latin, à 3 min du métro Sherbrooke.',
+    info_1_h: 'Date & horaire', info_1_p: 'Vendredi 23 octobre 2026. Portes à 22 h, fin à 03 h.',
+    info_2_h: 'Emplacement', info_2_p: 'Red Room, 2037 rue Saint-Denis, Montréal — Quartier latin, à 3 min du métro Sherbrooke.',
     info_3_h: 'Accès', info_3_p: 'Événement 18 +. Pièce d’identité avec photo obligatoire. Entrées et sorties permises toute la nuit.',
     info_4_h: 'Sur place', info_4_p: 'Vestiaire, bar, point d’eau gratuit. Système son grand format. Cadeau aux 30 premières personnes. Zéro jugement.',
     tickets_kicker: 'Billets',
-    tickets_title: 'Entre dans le <em>CLUB 2000</em>',
-    poster_tag: 'Affiche',
-    poster_alt: 'Affiche AFTER HOURS — CLUB 2000, 12 septembre, 2037 rue Saint-Denis, Montréal',
-    poster_aria: "Ouvrir l'affiche AFTER HOURS en plein écran",
-    tier_online: 'En ligne', tier_online_tag: 'En vente',
-    tier_door: 'À la porte', tier_door_tag: 'Le soir même',
+    tickets_title: 'Entre au <em>Red Room</em>',
+    poster_tag: 'Flyer',
+    poster_alt: 'Flyer HALLOWEEN PARTY — CLUB 2000, 23 octobre, Red Room, 2037 rue Saint-Denis, Montréal',
+    poster_aria: 'Ouvrir le flyer en plein écran',
+    tier_online: '1re vague', tier_online_tag: 'En vente',
+    tier_door: 'Vagues suivantes', tier_door_tag: 'Le prix monte',
     tickets_cta: 'Acheter un billet',
     tickets_soon: 'Billetterie bientôt',
     tickets_fine: 'Quantité limitée · 18 + · non remboursable · billet transférable',
     faq_kicker: 'FAQ',
     faq_title: 'Questions <em>fréquentes</em>',
     faq_1_q: "Où se passe l'événement ?",
-    faq_1_a: "Au 2037 rue Saint-Denis, à Montréal, dans le Quartier latin — à quelques pas du métro Sherbrooke. Les consignes d'accès sont envoyées par courriel aux détenteurs de billets la veille.",
+    faq_1_a: "Au Red Room, 2037 rue Saint-Denis, à Montréal, dans le Quartier latin — à quelques pas du métro Sherbrooke. Les consignes d'accès sont envoyées par courriel aux détenteurs de billets la veille.",
     faq_2_q: "Quel est l'âge minimum ?",
     faq_2_a: "18 ans et plus. Une pièce d'identité avec photo est exigée à l'entrée, sans exception.",
     faq_3_q: 'Puis-je sortir et revenir ?',
     faq_3_a: 'Oui. Tu peux sortir et revenir librement pendant la nuit — garde ton billet ou ton bracelet sur toi.',
-    faq_4_q: 'Comment je rentre chez moi à 4 h ?',
-    faq_4_a: 'À 4 h le métro ne roule pas encore (premier passage vers 05 h 30). Les taxis et VTC couvrent le secteur toute la nuit, et le réseau de bus de nuit de la STM dessert le Quartier latin.',
+    faq_4_q: 'Comment je rentre chez moi à 3 h ?',
+    faq_4_a: 'À 3 h le métro ne roule pas encore (premier passage vers 05 h 30). Les taxis et VTC couvrent le secteur toute la nuit, et le réseau de bus de nuit de la STM dessert le Quartier latin.',
     faq_5_q: "Le cadeau des 30 premiers, c'est quoi ?",
     faq_5_a: "Une surprise CLUB 2000 remise à l'entrée aux 30 premières personnes arrivées. Arrive tôt.",
     faq_6_q: 'Les billets sont-ils remboursables ?',
@@ -131,17 +126,16 @@ const I18N = {
     foot_rights: 'Tous droits réservés',
   },
   en: {
-    meta_title: 'CLUB 2000 — Y2K RAVE · Montreal',
-    meta_desc: 'CLUB 2000 presents Y2K RAVE — a techno night in Montreal. The sound of the year 2000, played louder. September 12, 2026.',
-    nav_night: 'Night', nav_lineup: 'Line-up', nav_info: 'Info', nav_faq: 'FAQ', nav_tickets: 'Tickets',
+    meta_title: 'CLUB 2000 — HALLOWEEN PARTY · Montreal',
+    meta_desc: 'CLUB 2000 presents HALLOWEEN PARTY at Red Room: Michael & Jason Mayers on the decks. Friday, October 23, 2026, 10 PM to 3 AM, Montreal.',
+    nav_night: 'Night', nav_dj: 'DJs', nav_info: 'Info', nav_faq: 'FAQ', nav_tickets: 'Tickets',
     nav_open: 'Open menu', nav_close: 'Close menu',
     lang_aria: 'Passer en français',
-    hero_eyebrow: 'CLUB 2000 · Techno night',
-    hero_sub: 'Five hours of techno. The sound of the year 2000, played louder.',
-    // hero_tags: 'Techno — 130-142 BPM — wall of sound',
-    hero_cta_primary: 'Get your spot',
-    hero_cta_secondary: 'See the night',
-    ticker_1: 'Techno all night', ticker_2: 'Year 2000',
+    hero_eyebrow: 'CLUB 2000 presents',
+    hero_sub: 'Fri Oct 23 · 10 PM → 3 AM<br /><b>Red Room</b> · 2037 Saint-Denis',
+    hero_dj: '<span>&gt; on the decks</span> Michael <em>&amp;</em> Jason Mayers',
+    hero_cta_primary: 'Tickets from $10',
+    hero_cta_secondary: 'The DJs',
     next_kicker: 'The night',
     next_sub: 'presented by CLUB 2000',
     cd_days: 'days', cd_hours: 'hours', cd_min: 'min', cd_sec: 'sec',
@@ -154,43 +148,39 @@ const I18N = {
     fact_access: 'Access', fact_access_val: '18+ · photo ID', fact_access_sub: 'Re-entry allowed',
     perk_text: 'Free gift for the first 30 people through the door.',
     next_cta: 'Get a ticket',
-    lineup_kicker: 'Line-up',
-    lineup_title: 'Three artists, <em>one night</em>',
-    lineup_note: 'Three back-to-back sets, from open to close.',
-    lineup_order_lab: 'Running order',
-    lineup_time_vince: '10 – 11:30 PM',
-    lineup_time_djojo: '11:30 PM – 1:30 AM',
-    lineup_time_ratchet: '1:30 – 3 AM',
-    lineup_flyer_aria: 'Open the flyer full screen',
-    lineup_alt_vince: 'Vince flyer — CLUB 2000, September 12, 2037 rue Saint-Denis, Montreal',
-    lineup_alt_djojo: 'DJoJo flyer — CLUB 2000, September 12, 2037 rue Saint-Denis, Montreal',
-    lineup_alt_ratchet: 'Ratchet flyer — CLUB 2000, September 12, 2037 rue Saint-Denis, Montreal',
+    dj_kicker: 'DJs',
+    dj_title: 'One duo, <em>all night</em>',
+    dj_lab: '&gt; Tonight’s DJs',
+    dj_when: 'On the decks from 10 PM to 3 AM. Nobody else.',
+    dj_alt: 'Michael and Jason Mayers',
+    dj_flyer: 'See the DJ flyer',
+    dj_flyer_alt: 'DJ flyer — Michael & Jason Mayers, October 23, Red Room',
     info_kicker: 'Practical info',
     info_title: 'Everything you <em>need to know</em>',
-    info_1_h: 'Date & time', info_1_p: 'Saturday, September 12, 2026. Doors at 10 PM, ends at 4 AM.',
-    info_2_h: 'Location', info_2_p: '2037 rue Saint-Denis, Montreal — Latin Quarter, 3 min from Sherbrooke station.',
+    info_1_h: 'Date & time', info_1_p: 'Friday, October 23, 2026. Doors at 10 PM, ends at 3 AM.',
+    info_2_h: 'Location', info_2_p: 'Red Room, 2037 rue Saint-Denis, Montreal — Latin Quarter, 3 min from Sherbrooke station.',
     info_3_h: 'Access', info_3_p: '18+ event. Government photo ID required at the door. Re-entry allowed all night.',
     info_4_h: 'On site', info_4_p: 'Coat check, bar, free water station. Large-format sound system. Gift for the first 30 people. Zero judgement.',
     tickets_kicker: 'Tickets',
-    tickets_title: 'Step into the <em>CLUB 2000</em>',
-    poster_tag: 'Poster',
-    poster_alt: 'AFTER HOURS flyer — CLUB 2000, September 12, 2037 rue Saint-Denis, Montréal',
-    poster_aria: 'Open the AFTER HOURS flyer full screen',
-    tier_online: 'Online', tier_online_tag: 'On sale',
-    tier_door: 'At the door', tier_door_tag: 'Night of',
+    tickets_title: 'Step into <em>Red Room</em>',
+    poster_tag: 'Flyer',
+    poster_alt: 'HALLOWEEN PARTY flyer — CLUB 2000, October 23, Red Room, 2037 rue Saint-Denis, Montréal',
+    poster_aria: 'Open the flyer full screen',
+    tier_online: 'Wave 1', tier_online_tag: 'On sale',
+    tier_door: 'Next waves', tier_door_tag: 'Price goes up',
     tickets_cta: 'Buy a ticket',
     tickets_soon: 'Tickets coming soon',
     tickets_fine: 'Limited quantity · 18+ · non-refundable · transferable',
     faq_kicker: 'FAQ',
     faq_title: 'Frequent <em>questions</em>',
     faq_1_q: 'Where is the event?',
-    faq_1_a: 'At 2037 rue Saint-Denis, Montreal, in the Latin Quarter — steps from Sherbrooke station. Access instructions are emailed to ticket holders the day before.',
+    faq_1_a: 'At Red Room, 2037 rue Saint-Denis, Montreal, in the Latin Quarter — steps from Sherbrooke station. Access instructions are emailed to ticket holders the day before.',
     faq_2_q: 'What is the minimum age?',
     faq_2_a: '18 and over. Government photo ID is required at the door, no exceptions.',
     faq_3_q: 'Can I leave and come back?',
     faq_3_a: 'Yes. You can come and go freely during the night — just keep your ticket or wristband on you.',
-    faq_4_q: 'How do I get home at 4 AM?',
-    faq_4_a: "At 4 AM the metro isn't running yet (first train around 5:30 AM). Taxis and rideshares cover the area all night, and the STM night bus network serves the Latin Quarter.",
+    faq_4_q: 'How do I get home at 3 AM?',
+    faq_4_a: "At 3 AM the metro isn't running yet (first train around 5:30 AM). Taxis and rideshares cover the area all night, and the STM night bus network serves the Latin Quarter.",
     faq_5_q: "What's the gift for the first 30?",
     faq_5_a: 'A CLUB 2000 surprise handed out at the door to the first 30 people to arrive. Come early.',
     faq_6_q: 'Are tickets refundable?',
@@ -295,13 +285,13 @@ function applyLang(lang) {
 
 /* ─────────────────────────────────────────────
    MOTION ENGINE — défilement à inertie (Lenis),
-   parallaxe, curseur personnalisé, boutons magnétiques.
-   Inspiré de la sensation de lusion.co ; aucun WebGL.
+   parallaxe. Inspiré de la sensation de lusion.co ; aucun WebGL.
+   (Boutons « magnétiques » qui suivaient la souris : retirés le
+   2026-10-12 à la demande du client.)
    Une seule boucle rAF, tout coupé sous reduced-motion.
    ───────────────────────────────────────────── */
 (function motionEngine() {
   const bar = document.getElementById('scrollBar');
-  const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   const setProgress = () => {
     if (!bar) return;
@@ -349,17 +339,10 @@ function applyLang(lang) {
   window.addEventListener('resize', measure);
   window.addEventListener('load', measure);
 
-  /* ---- boutons magnétiques (doux) ---- */
-  const magnets = [...document.querySelectorAll('[data-magnetic]')].map((el) => ({ el, mx: 0, my: 0 }));
-  let pointerX = -9999, pointerY = -9999, pointerSeen = false;
-  if (fine) {
-    window.addEventListener('pointermove', (e) => { pointerX = e.clientX; pointerY = e.clientY; pointerSeen = true; }, { passive: true });
-  }
-
   /* ---- héro : sortie cinétique au scroll (le contenu s'élève et s'efface,
-         la vidéo zoome légèrement) ---- */
+         le fond — image ou vidéo — zoome légèrement) ---- */
   const heroContent = document.querySelector('.hero-content');
-  const heroVideoEl = document.getElementById('heroVideo');
+  const heroVideoEl = document.querySelector('.hero-video > img, #heroVideo');
   let heroFade = 0;
 
   const raf = (time) => {
@@ -384,22 +367,6 @@ function applyLang(lang) {
       const fromCenter = (l.top + l.h / 2 - y) - vh / 2;
       l.cur = lerp(l.cur, clamp(fromCenter * l.speed, -160, 160), 0.085);
       l.el.style.translate = `0 ${l.cur.toFixed(2)}px`;
-    }
-
-    // magnétisme doux
-    for (const m of magnets) {
-      let tx = 0, ty = 0;
-      if (pointerSeen) {
-        const r = m.el.getBoundingClientRect();
-        const dx = pointerX - (r.left + r.width / 2);
-        const dy = pointerY - (r.top + r.height / 2);
-        const range = Math.max(r.width, r.height) / 2 + 40;
-        if (Math.hypot(dx, dy) < range) { tx = dx * 0.2; ty = dy * 0.2; }
-      }
-      m.mx = lerp(m.mx, tx, 0.18);
-      m.my = lerp(m.my, ty, 0.18);
-      m.el.style.transform = (Math.abs(m.mx) < 0.15 && Math.abs(m.my) < 0.15)
-        ? '' : `translate(${m.mx.toFixed(2)}px, ${m.my.toFixed(2)}px)`;
     }
 
     requestAnimationFrame(raf);
@@ -868,7 +835,8 @@ function applyLang(lang) {
     return f;
   };
 
-  const LO = [4, 6, 14], MID = [15, 32, 82], HI = [96, 142, 232];
+  // brume orange citrouille (thème Halloween) — l'ancien bleu : [4,6,14] [15,32,82] [96,142,232]
+  const LO = [6, 4, 3], MID = [62, 24, 6], HI = [196, 90, 26];
 
   const render = (t) => {
     const flow = t * 0.000022;                        // dérive lente des courants

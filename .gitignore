@@ -29,3 +29,7 @@ desktop.ini
 *.log
 .vscode/
 .idea/
+
+# flyers Halloween 23.10 — sources lourdes ; versions web : flyer-halloween.jpg / flyer-dj.jpg / dj-duo.jpg / hero-mask.jpg
+flyer.png
+DJ.png

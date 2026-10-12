@@ -639,15 +639,6 @@ section {
 }
 .dj-names em { font-style: normal; color: var(--volt); }
 .dj-when { font-family: var(--font-mono); font-size: clamp(1.25rem, 1rem + 0.8vw, 1.6rem); line-height: 1.2; color: var(--text-dim); max-width: 26ch; }
-.dj-flyer {
-  display: inline-flex; align-items: center; gap: 0.9rem; align-self: flex-start;
-  margin-top: 0.4rem; padding: 0.5rem 1rem 0.5rem 0.5rem;
-  border: 1px solid var(--panel-line); background: rgba(0,0,0,0.35);
-  font-family: var(--font-mono); font-size: 1.25rem; color: var(--text);
-  transition: border-color 0.2s ease, color 0.2s ease;
-}
-.dj-flyer img { width: 48px; height: auto; }
-.dj-flyer:hover { border-color: var(--volt); color: var(--volt); }
 .dj-screen .osd { top: 0.9rem; font-size: clamp(1.3rem, 1rem + 0.8vw, 1.7rem); }
 .dj-screen .osd--l { left: 1rem; }
 .dj-screen .osd--r { right: 1rem; }

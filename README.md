@@ -24,7 +24,7 @@ gracefully if unreachable; without the widget script the ticket area is empty.
 | `hero-mask.jpg` | hero background (mask cropped from `flyer.png`) |
 | `flyer-halloween.jpg` | web version of the event flyer (source `flyer.png`, gitignored) |
 | `dj-duo.jpg` | Jason & Michael photo, cropped from `DJ.png` |
-| `og-image.jpg` | link preview (1200×630, from `DJ.png`) |
+| `og-image.jpg` | link preview (1200×630, from `flyer.png`) |
 | `favicon.ico` · `icon-192/512.png` · `apple-touch-icon.png` | site icon, generated from `hero.jpg` (gitignored source) |
 | `club-hero.mp4` / `.jpg` | old blue hero video — currently unused (see §4) |
 | `PRODUCT.md` | product truth (audience, event facts, constraints) |
